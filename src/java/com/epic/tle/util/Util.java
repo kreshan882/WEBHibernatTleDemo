@@ -4,7 +4,7 @@
  */
 package com.epic.tle.util;
 
-import com.epic.tle.FieldEngineerManagement.smartcard.HSMConnector;
+//import com.epic.tle.FieldEngineerManagement.smartcard.HSMConnector;
 import com.epic.tle.mapping.EpicTleUser;
 import com.epic.tle.mapping.EpicTleUserPasswordHistory;
 import com.epic.tle.util.alerts.BMLAlertSender;
@@ -1129,7 +1129,7 @@ public class Util {
         byte KEY[] = ISOUtil.hex2byte("8FA623E44821B10299F2701809F3303EA28143E17712B3C8");
         org.jpos.security.Util.adjustDESParity(KEY);
         Cipher cipher = Cipher.getInstance("DESede/CBC/PKCS5Padding", p.getName());
-        cipher.init(Cipher.ENCRYPT_MODE, new SecretKeySpec(KEY, HSMConnector.getTDES_ALGORITHEM()), new IvParameterSpec(new byte[8]));
+//        cipher.init(Cipher.ENCRYPT_MODE, new SecretKeySpec(KEY, HSMConnector.getTDES_ALGORITHEM()), new IvParameterSpec(new byte[8]));
         return ISOUtil.hexString(cipher.doFinal(data));
     }
 
@@ -1172,10 +1172,10 @@ public class Util {
         Cipher cipher = Cipher.getInstance("DESede/CBC/PKCS5Padding", p.getName());
 
         if (mode == 1) {
-            cipher.init(Cipher.ENCRYPT_MODE, new SecretKeySpec(KEY, HSMConnector.getTDES_ALGORITHEM()), new IvParameterSpec(new byte[8]));
+//            cipher.init(Cipher.ENCRYPT_MODE, new SecretKeySpec(KEY, HSMConnector.getTDES_ALGORITHEM()), new IvParameterSpec(new byte[8]));
             return ISOUtil.hexString(cipher.doFinal(str.getBytes()));
         } else {
-            cipher.init(Cipher.DECRYPT_MODE, new SecretKeySpec(KEY, HSMConnector.getTDES_ALGORITHEM()), new IvParameterSpec(new byte[8]));
+//            cipher.init(Cipher.DECRYPT_MODE, new SecretKeySpec(KEY, HSMConnector.getTDES_ALGORITHEM()), new IvParameterSpec(new byte[8]));
             return new String(cipher.doFinal(ISOUtil.hex2byte(str)));
         }
     }

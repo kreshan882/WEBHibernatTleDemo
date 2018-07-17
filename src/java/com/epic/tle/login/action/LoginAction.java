@@ -4,7 +4,6 @@
  */
 package com.epic.tle.login.action;
 
-import com.epic.tle.globalparam.ContextListener;
 import com.epic.tle.login.bean.HomeValues;
 import com.epic.tle.login.bean.ModuleBean;
 import com.epic.tle.login.bean.PageBean;
@@ -24,7 +23,6 @@ import com.epic.tle.util.constant.SystemModule;
 import com.epic.tle.util.Util;
 import com.epic.tle.util.constant.Configurations;
 import com.epic.tle.util.constant.SessionVariable;
-import com.epic.tle.util.constant.SystemSection;
 import com.epic.tle.util.constant.TaskVarList;
 import com.epic.tle.util.constant.TokenConst;
 import com.opensymphony.xwork2.ActionContext;
@@ -36,11 +34,9 @@ import org.apache.struts2.ServletActionContext;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Properties;
 import java.util.Timer;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
@@ -172,11 +168,11 @@ public class LoginAction extends ActionSupport implements ModelDriven<UserLoginB
                                 Util.insertHistoryRecord(LogTypes.TLEWEBAPP, userLoginBean.getDBuserappCode(), SystemModule.USER_MANAGEMENT, TaskVarList.LOGIN, SystemMessage.USER_LOGIN_SUCCESS, null, null, null, userLoginBean.getId(), null, null, null);
                                 LogFileCreator.writeInforToLog(SystemMessage.USER_LOGIN_SUCCESS);
 
-                                if (!isStartMonitorService) {
-                                    isStartMonitorService = true;
-
-                                    new Thread(new MonitorServerStatus()).start();
-                                }
+//                                if (!isStartMonitorService) {
+//                                    isStartMonitorService = true;
+//
+//                                    new Thread(new MonitorServerStatus()).start();
+//                                }
                                 boolean updateRemainigPasswordAttempt = getService().getLoginService().updateRemainigPasswordAttempt(0, userLoginBean.getId());
                                 if (updateRemainigPasswordAttempt == true) {
                                     return SUCCESS;

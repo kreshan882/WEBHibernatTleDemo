@@ -4,7 +4,7 @@
  */
 package com.epic.tle.globalparam;
 
-import com.epic.tle.FieldEngineerManagement.smartcard.HSMConnector;
+
 import com.epic.tle.util.constant.Configurations;
 import com.epic.tle.util.HibernateInit;
 import com.epic.tle.util.OperationListenerMonitor;
@@ -34,7 +34,7 @@ public class ContextListener implements ServletContextListener {
                 if (!Configurations.HSMCONFIG) {
                     System.out.println("Hsm init 2....");
                 //Configurations.HSMCONFIG = CommunicatWithSmartCard.init();              
-                    HSMConnector.init(Configurations.HSM_SLOT,Configurations.HSM_PASSWORD);
+                   // HSMConnector.init(Configurations.HSM_SLOT,Configurations.HSM_PASSWORD);
                 }
             } else {
                 System.out.println(SystemMessage.INITIAL_ERROR);

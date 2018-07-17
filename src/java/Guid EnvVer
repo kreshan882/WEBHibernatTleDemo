@@ -1,0 +1,8 @@
+==== environment variable set
+my com-> env variable
+TLE_HOME=C:\epicline
+
+==== glasgfish db pool add
+glashfias-> JDBC
+jdbc connection pool add
+jdbc resourcs add ->[jdbc/mysql=Name]
