@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+		
+
+
+		<!-- Epic-TLE V5.00 -->
+
+
+		<!-- Epic-TLE action node -->
+		<servernode>2</servernode>
+
+		
+		<!-- Database  configuration -->
+		<dbpoolmax>30</dbpoolmax>
+  		<dbpoolmin>10</dbpoolmin>
+		<dbpoolmaxcon>50</dbpoolmaxcon>
+		<dbpoolcontimeout>5000</dbpoolcontimeout> <!-- ms -->
+		<dbpoolconexpirtimeout>0</dbpoolconexpirtimeout> <!-- s -->
+  		<dbpoolurl>AC90D7ADF0997AE0519C4BAED4B7D7E3B4B12C9927A569A566EAA4317BE93D314B6AA8DE3618B5462252A95E335A537C</dbpoolurl>
+		<dbpoolusername>CAEA871B9573B6EA</dbpoolusername>
+		<dbpoolpassword>CCA65419407D2370CF4582BF2F814564</dbpoolpassword>
+		<dbpooldriver>com.mysql.jdbc.Driver</dbpooldriver>
+		<dbdialect>org.hibernate.dialect.MySQLDialect</dbdialect>
+		<dbpoolsource>jdbc/mysql</dbpoolsource>
+		<dbpooltype>2</dbpooltype> <!--  1-Oracle , 2-Mysql -->
+		
+       <!-- HSM Password -->
+         <hsmpassword>115E0DA862162284</hsmpassword>
+         <hsmslot>0</hsmslot>
+
+
+</config>

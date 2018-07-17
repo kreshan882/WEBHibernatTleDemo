@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><config>
+		
+
+
+		<!-- Epic-TLE V4.00 -->
+
+
+		<!-- Epic-TLE action node -->
+		<servernode>2</servernode>
+
+		<!-- ESM status -->
+		<esmstatus>1</esmstatus> <!-- 1 = Enabled, 2= Disabled -->
+
+		<!-- Database  configuration -->
+		<dbpoolmax>30</dbpoolmax>
+  		<dbpoolmin>10</dbpoolmin>
+		<dbpoolmaxcon>50</dbpoolmaxcon>
+		<dbpoolcontimeout>5000</dbpoolcontimeout> <!-- ms -->
+		<dbpoolconexpirtimeout>0</dbpoolconexpirtimeout> <!-- s -->
+  		<dbpoolurl>jdbc:oracle:thin:@192.168.1.93:1521:orcl</dbpoolurl>
+		<dbpoolusername>EPICTLENEW</dbpoolusername>
+		<dbpoolpassword>password</dbpoolpassword>
+		<dbdialect>org.hibernate.dialect.Oracle10gDialect</dbdialect>
+		<dbpooldriver>oracle.jdbc.driver.OracleDriver</dbpooldriver>
+		<dbpoolsource>jdbc/oracle</dbpoolsource>
+		<dbpooltype>2</dbpooltype>
+		
+		<!-- Load balance configuration -->
+		<loadStatus>2</loadStatus> <!-- 1 = Enabled, 2= Disabled -->
+		<loadnodeip>192.168.1.127</loadnodeip>
+		<port>7800</port>
+		<value>10</value>
+		
+		<!-- Getting database backups  configuration -->
+                <pcpass>password</pcpass>
+                <dbbakuphours>2</dbbakuphours> <!-- Hours -->
+                <dbbakupstatus>2</dbbakupstatus> <!-- 1 = Enabled, 2= Disabled -->
+
+		<!-- V-IP bind configuration -->
+                <vip>192.168.1.112</vip>
+                <vipstatus>2</vipstatus> <!-- 1 = Enabled, 2= Disabled -->
+				
+				
+				<hsmpassword>115E0DA862162284</hsmpassword>
+	    <hsmslot>0</hsmslot>
+
+
+
+</config>
