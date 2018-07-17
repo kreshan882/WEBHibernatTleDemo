@@ -55,9 +55,9 @@
                 <param name="message">csrfError</param>
         </action>
         
-        <action name="warningFromCSRF" class="com.epic.tle.token.action.TokenAction">
+<!--        <action name="warningFromCSRF" class="com.epic.tle.token.action.TokenAction">
             <result name="redirect">/pages/msgFrag.jsp</result>
-        </action>
+        </action>-->
         <action name="homeCall" class="com.epic.tle.login.action.LoginAction" method="homeFunction">
             <result name="success">/pages/login/home.jsp</result>        
         </action>
@@ -68,7 +68,7 @@
             <result name="success">/pages/login/login.jsp</result>
         </action>
         
-        <!--added by gayan-->
+<!--        added by gayan
          <action name="resetPassword" class="com.epic.tle.login.action.ResetPasswordAction" method="resetPassword">
             <result name="passwordresetted">/pages/login/resetPassword.jsp</result>
             <result name="login">/pages/login/login.jsp</result>
@@ -76,7 +76,7 @@
          <action name="forgerPassword" class="com.epic.tle.login.action.ForgetPasswordAction" method="forgetPasword">
             <result name="resetted">/pages/login/forgetPassword.jsp</result>
             <result name="login">/pages/login/login.jsp</result>
-        </action>
+        </action>-->
          <action name="removeSessionAttribute" class="com.epic.tle.login.action.LoginAction" method="removeSessionAttribute">
            <result name="remove" type="json">/pages/header.jsp</result>
         </action>
@@ -156,7 +156,7 @@
         </action>
     </package> 
     
-    <package name="Terminal_Management" extends="pglobal" namespace="/">     
+<!--    <package name="Terminal_Management" extends="pglobal" namespace="/">     
         <action name="regTermInvalidFileTypeOrSize" class="com.epic.tle.terminalManagement.action.RegisterTerminal">
             <result name="success">/pages/terminalManagement/registerTerminal.jsp</result> 
                 <param name="dmessage">inavalidFileType</param>  
@@ -173,7 +173,7 @@
        <action name="uploadFileregTerm" class="com.epic.tle.terminalManagement.action.RegisterTerminal" method="uploadFile">  
            <interceptor-ref name="fileUpload">
        		<param name="allowedTypes">text/plain</param>
-<!--       	<param name="maximumSize">10240</param>-->
+       	<param name="maximumSize">10240</param>
   	    </interceptor-ref>   
             <interceptor-ref name="defaultStack"></interceptor-ref>    
             <result name="success">/pages/terminalManagement/registerTerminal.jsp</result>  
@@ -213,45 +213,10 @@
                 <param name="contentType">"application/vnd.ms-excel"</param>
                 <param name="inputName">excelStream</param>
                 <param name="contentDisposition">attachment;filename="terminal_report.xlsx"</param>
-                <!--<param name="bufferSize">61440</param>-->
-            </result>
-        </action>
-<!--        <action name ="*TerminalAdd" method="{1}" class="com.epic.tle.terminal.action.AddTerminal">
-            <result name="success">/pages/terminalmanager/addTerminal.jsp</result>
-            <result name="add">/pages/msgFrag.jsp</result>   
-            <result name="downloadTerList" type="stream">
-                <param name="contentType">application/octet-stream</param>
-                <param name="inputName">inputStream</param>
-                <param name="contentDisposition">attachment;filename="TerminalRegisterResult.txt"</param>
-                <param name="bufferSize">4096</param>
-            </result>                       
-        </action>
-        
-     
-        <action name ="*TerminalEditView" method="{1}" class="com.epic.tle.terminal.action.EditAndViewTerminal">
-            <result name="success">/pages/terminalmanager/editViewTerminal.jsp</result>
-            <result name="update" >/pages/msgFrag.jsp</result>
-            <result name="list" type="json"></result>
-            <result name="delete" type="json"></result>
-            <result name="find" type="json"></result>
-            <result name="excelreportterminal" type="stream">
-                <param name="contentType">"application/vnd.ms-excel"</param>
-                <param name="inputName">excelStream</param>
-                <param name="contentDisposition">attachment;filename="terminal_report.xlsx"</param>
                 <param name="bufferSize">61440</param>
             </result>
-        </action>  
+        </action>
 
-        <action name ="*TerminalNonFunctioning" method="{1}" class="com.epic.tle.terminal.action.NonFunctionTerminal">
-            <result name="success">/pages/terminalmanager/nonFunctionTerminal.jsp</result>
-            <result name="list" type="json"></result>
-            <result name="excelreportnonterminal" type="stream">
-                <param name="contentType">"application/vnd.ms-excel"</param>
-                <param name="inputName">excelStream</param>
-                <param name="contentDisposition">attachment;filename="non_function_terminal_report.xlsx"</param>
-                <param name="bufferSize">61440</param>
-            </result>
-        </action>-->
         <action name ="*nonTerm" method="{1}" class="com.epic.tle.terminalManagement.action.NonFunctionTerminal">
             <result name="success">/pages/terminalmanager/nonFunctionTerminal.jsp</result>
             <result name="list" type="json"></result>
@@ -277,7 +242,7 @@
                 <param name="inputName">excelStream</param>
                 <param name="contentDisposition">attachment;filename="system_history_report.xlsx"</param>
                 <param name="bufferSize">61440</param>
-                <!--<param name="maximumSize">500000</param>--> 
+                <param name="maximumSize">500000</param> 
             </result>
         </action>
         
@@ -312,7 +277,7 @@
         </action>
         
         
-        <!--        <action name ="*SystemAlerts" method="{1}" class="com.epic.tle.systemtools.action.SystemAlerts">
+                <action name ="*SystemAlerts" method="{1}" class="com.epic.tle.systemtools.action.SystemAlerts">
             <result name="success">/pages/systemtools/systemAlerts.jsp</result>
             <result name="list" type="json"></result>
             <result name="excelreportsystemalerts" type="stream">
@@ -327,9 +292,9 @@
                 <param name="inputName">zipStream</param>
                 <param name="bufferSize">61440</param>
             </result>
-        </action>-->
+        </action>
         
-        <!--        <action name ="*transFail" method="{1}" class="com.epic.tle.systemtools.action.TransactionsFailing">
+                <action name ="*transFail" method="{1}" class="com.epic.tle.systemtools.action.TransactionsFailing">
             <result name="success">/pages/systemtools/transectionFail.jsp</result>
             <result name="list" type="json"></result>            
             <result name="excelreporttransactionfailing" type="stream">
@@ -344,8 +309,8 @@
                 <param name="inputName">zipStream</param>
                 <param name="bufferSize">61440</param>
             </result>
-        </action>-->
-        <!--        <action name ="*SystemTxnFail" method="{1}" class="com.epic.tle.systemtools.action.TransactionsFailing">
+        </action>
+                <action name ="*SystemTxnFail" method="{1}" class="com.epic.tle.systemtools.action.TransactionsFailing">
             <result name="success">/pages/systemtools/transectionFail.jsp</result>
             <result name="list" type="json"></result>            
             <result name="excelreporttransactionfailing" type="stream">
@@ -360,27 +325,12 @@
                 <param name="inputName">zipStream</param>
                 <param name="bufferSize">61440</param>
             </result>
-        </action>-->
+        </action>
                   
-    </package> 
+    </package> -->
     
     <package name="UserProfile_Management" extends="pglobal" namespace="/">
-        <!--        <action name="*UserProfileAdd" method="{1}" class="com.epic.tle.userprofile.action.AddUserProfile" >
-            <result name="success">/pages/userprofile/addUserProfile.jsp</result>
-            <result name="loadmodulepages" type="json"></result>                    
-            <result name="submit">/pages/userprofile/addUserProfile.jsp</result>        
-        </action>     -->
-        <!--        <action name="*UserProfileEditView" class="com.epic.tle.userprofile.action.EditViewUserProfile" method="{1}">
-            <result name="success">/pages/userprofile/editAndViewUserProfile.jsp</result>
-            <result name="list" type="json"></result> 
-            <result name="load" type="json"></result>
-            <result name="pagemap" type="json"></result>
-            <result name="update">/pages/msgFrag.jsp</result>
-            <result name="delete" type="json"></result>
-        </action>-->
-        
-        
-        
+
         <action name="profReg" class="com.epic.tle.profile.action.UserProfileManagement">
             <result name="success">/pages/userprofile/registerUserProfiles.jsp</result>               
         </action>
@@ -442,7 +392,7 @@
         </action>		
     </package>
     
-    <package name="LogManagement" extends="pglobal"   namespace="/">                 
+<!--    <package name="LogManagement" extends="pglobal"   namespace="/">                 
         <action name="*logView" method="{1}" class="com.epic.tle.log.action.ViewLogs" >
             <result name="success">/pages/logmanager/viewLogs.jsp</result>
             <result name="list" type="json" ></result>                     
@@ -461,7 +411,7 @@
             <result name="delete" type="json" ></result> 
             <result name="clearlog" type="json" ></result>                       
         </action>
-        <!--        <action name="*LogView" method="{1}" class="com.epic.tle.log.action.ViewLogs" >
+                <action name="*LogView" method="{1}" class="com.epic.tle.log.action.ViewLogs" >
             <result name="success">/pages/logmanager/viewLogs.jsp</result>
             <result name="list" type="json" ></result>                     
             <result name="download" type="stream">
@@ -478,14 +428,14 @@
             </result>
             <result name="delete" type="json" ></result> 
             <result name="clearlog" type="json" ></result>                       
-        </action>-->
+        </action>
     </package> 
    
     <package name="FieldEngineerManagement" extends="pglobal"   namespace="/">         
            
         <action name="*keyField" class="com.epic.tle.FieldEngineerManagement.action.KeyInjection" method="{1}">
             <result name="success">/pages/fieldengineer/keyInjection.jsp</result>  
-            <!--<result name="add">/pages/msgFrag.jsp</result>--> 
+            <result name="add">/pages/msgFrag.jsp</result> 
             <result name="add" type="json"></result> 
             <result name="PdfDownloadKeyMail" type="jasper">            
                 <param name="location">/resources/jReport/POSTreminal.jasper</param>
@@ -561,8 +511,8 @@
             <result name="success">/pages/fieldengineer/RegisterFieldEngineer.jsp</result>
             <result name="pinreset" type="json"></result>
          </action>       
-    </package> 
-    
+    </package> -->
+<!--    
     <package name ="ServerManager" extends="pglobal"   namespace="/">
 
         <action name="*sessConf" method="{1}" class="com.epic.tle.servermanager.action.SessionConfiguration">
@@ -591,12 +541,12 @@
             <result name="success">/pages/servermanager/portConf.jsp</result>
             <result name="update" >/pages/msgFrag.jsp</result>
         </action>
-<!--        <action name="*portConf" method="{1}" class="com.epic.tle.servermanager.action.PortConfiguration">
+        <action name="*portConf" method="{1}" class="com.epic.tle.servermanager.action.PortConfiguration">
             <result name="success">/pages/servermanager/portConf.jsp</result>
             <result name="list" type="json"></result>
             <result name="find" type="json"></result>
             <result name="update" >/pages/msgFrag.jsp</result>
-        </action>-->
+        </action>
         
          <action name ="servConf" class="com.epic.tle.servermanager.action.ServerConfiguration">
             <result name="success">/pages/servermanager/serverConf.jsp</result>           
@@ -614,11 +564,11 @@
             <result name="reset" type="json"></result>            
         </action>
        
-<!--        <action name ="*servConf" method="{1}" class="com.epic.tle.servermanager.action.ServerConfiguration">
+        <action name ="*servConf" method="{1}" class="com.epic.tle.servermanager.action.ServerConfiguration">
             <result name="success">/pages/servermanager/serverConf.jsp</result>
             <result name="update" >/pages/msgFrag.jsp</result>                
             <result name="reset" type="json"></result>            
-        </action>-->
+        </action>
         
         
         <action name ="resConf" class="com.epic.tle.servermanager.action.ResponseConfiguration">
@@ -637,12 +587,12 @@
             <result name="reset" type="json"></result>            
         </action>
         
-<!--        
+        
         <action name ="*resConf" method="{1}" class="com.epic.tle.servermanager.action.ResponseConfiguration">
             <result name="success">/pages/servermanager/responseConf.jsp</result>
             <result name="update" >/pages/msgFrag.jsp</result>                
             <result name="reset" type="json"></result>            
-        </action>-->
+        </action>
        
         <action name="smsProf" class="com.epic.tle.servermanager.action.SMSProfile" method="execute">
             <result name="success">/pages/servermanager/smsProfile.jsp</result>
@@ -725,7 +675,7 @@
     
         
     <package name ="HostManager" extends="pglobal"   namespace="/">
-<!--        <action name="*listMng" method="{1}" class="com.epic.tle.host.action.ListenerManage">
+        <action name="*listMng" method="{1}" class="com.epic.tle.host.action.ListenerManage">
             <result name="success">/pages/hostmanager/listnerManager.jsp</result>
             <result name="add" >/pages/msgFrag.jsp</result>
             <result name="update" >/pages/msgFrag.jsp</result> 
@@ -733,7 +683,7 @@
             <result name="find" type="json"></result>
             <result name="update" >/pages/msgFrag.jsp</result> 
             <result name="delete" type="json"></result>
-        </action>-->
+        </action>
         <action name="listMng" class="com.epic.tle.host.action.ListenerManage">
             <result name="success">/pages/hostmanager/listnerManager.jsp</result>
         </action>
@@ -766,7 +716,7 @@
             <result name="delete" type="json"></result>
         </action>
         
-        <!--        <action name="*HostListener" method="{1}" class="com.epic.tle.host.action.ListenerManage">
+                <action name="*HostListener" method="{1}" class="com.epic.tle.host.action.ListenerManage">
             <result name="success">/pages/hostmanager/listnerManager.jsp</result>
             <result name="add" >/pages/msgFrag.jsp</result>
             <result name="update" >/pages/msgFrag.jsp</result> 
@@ -774,9 +724,9 @@
             <result name="find" type="json"></result>
             <result name="update" >/pages/msgFrag.jsp</result> 
             <result name="delete" type="json"></result>
-        </action>-->
+        </action>
         
-        <!--        <action name="*HostChannel" method="{1}" class="com.epic.tle.host.action.ChannelManage">
+                <action name="*HostChannel" method="{1}" class="com.epic.tle.host.action.ChannelManage">
             <result name="success">/pages/hostmanager/channelManager.jsp</result>
             <result name="add" >/pages/msgFrag.jsp</result>
             <result name="update" >/pages/msgFrag.jsp</result> 
@@ -784,7 +734,7 @@
             <result name="find" type="json"></result>
             <result name="update" >/pages/msgFrag.jsp</result> 
             <result name="delete" type="json"></result>
-        </action>-->
+        </action>
         <action name="chanMng" class="com.epic.tle.host.action.ChannelManage">
             <result name="success">/pages/hostmanager/channelManager.jsp</result>
         </action>
@@ -832,7 +782,7 @@
             <result name="success">/pages/hostmanager/channelManager.jsp</result>
             <result name="delete" type="json"></result>
         </action>
-<!--         <action name="*chanMng" method="{1}" class="com.epic.tle.host.action.ChannelManage">
+         <action name="*chanMng" method="{1}" class="com.epic.tle.host.action.ChannelManage">
             <result name="success">/pages/hostmanager/channelManager.jsp</result>
             <result name="assign">/pages/hostmanager/popAddNII.jsp</result>
             <result name="add" >/pages/msgFrag.jsp</result>
@@ -841,7 +791,7 @@
             <result name="find" type="json"></result>
             <result name="update" >/pages/msgFrag.jsp</result> 
             <result name="delete" type="json"></result>
-        </action>-->
+        </action>
     </package>
     
     <package name="BinManagement" extends="pglobal" namespace="/">
@@ -883,7 +833,7 @@
             <result name="success">/pages/binManagement/blockBinProfile.jsp</result>
             <result name="update">/pages/msgFrag.jsp</result>
         </action>
-<!--         <action name="*blockBPrf" class="com.epic.tle.binManagement.action.BlockBinProfile" method="{1}">
+         <action name="*blockBPrf" class="com.epic.tle.binManagement.action.BlockBinProfile" method="{1}">
             <result name="success">/pages/binManagement/blockBinProfile.jsp</result>
             <result name="list" type="json">/pages/binManagement/blockBinProfile.jsp</result>
             <result name="Add">/pages/msgFrag.jsp</result>
@@ -891,7 +841,7 @@
             <result name="load" type="json"></result>
             <result name="Delete" type="json"></result>
             <result name="update">/pages/msgFrag.jsp</result>
-        </action>-->
+        </action>
         
         <action name="bin" class="com.epic.tle.binManagement.action.BinProfile">
         </action>
@@ -918,13 +868,13 @@
             <interceptor-ref name="defaultStack"></interceptor-ref>
             <result name="update" type="json"></result>
         </action>
-<!--        <action name="*bin" class="com.epic.tle.binManagement.action.BinProfile" method="{1}">
+        <action name="*bin" class="com.epic.tle.binManagement.action.BinProfile" method="{1}">
             <result name="Add">/pages/msgFrag.jsp</result>
             <result name="list" type="json">/pages/binManagement/popUpAssignBin.jsp</result>
             <result name="load" type="json"></result>
             <result name="Delete" type="json"></result>
             <result name="update" type="json"></result>
-        </action>-->
+        </action>
         
         <action name="refBPrf" class="com.epic.tle.binManagement.action.RefTerminalProfile">
             <result name="success">/pages/binManagement/refTerminalProfile.jsp</result>
@@ -963,7 +913,7 @@
             <result name="success">/pages/binManagement/refTerminalProfile.jsp</result>
             <result name="update">/pages/msgFrag.jsp</result>
         </action>
-<!--        <action name="*refBPrf" class="com.epic.tle.binManagement.action.RefTerminalProfile" method="{1}">
+        <action name="*refBPrf" class="com.epic.tle.binManagement.action.RefTerminalProfile" method="{1}">
             <result name="success">/pages/binManagement/refTerminalProfile.jsp</result>
             <result name="list" type="json">/pages/binManagement/blockBinProfile.jsp</result>
             <result name="Add">/pages/msgFrag.jsp</result>
@@ -971,7 +921,7 @@
             <result name="load" type="json"></result>
             <result name="Delete" type="json"></result>
             <result name="update">/pages/msgFrag.jsp</result>
-        </action>-->
+        </action>
        
         <action name="localBPrf" class="com.epic.tle.binManagement.action.LocalBin">
             <result name="success">/pages/binManagement/localBin.jsp</result>
@@ -1004,12 +954,12 @@
             <result name="success">/pages/binManagement/localBin.jsp</result>
             <result name="Delete" type="json"></result>
         </action>
-<!--        <action name="*localBPrf" class="com.epic.tle.binManagement.action.LocalBin" method="{1}">
+        <action name="*localBPrf" class="com.epic.tle.binManagement.action.LocalBin" method="{1}">
             <result name="success">/pages/binManagement/localBin.jsp</result>
             <result name="list" type="json">/pages/binManagement/localBin.jsp</result>
             <result name="Add">/pages/msgFrag.jsp</result>
             <result name="Delete" type="json"></result>
-        </action>-->
+        </action>
     </package>
         
     <package name="HostManagement" extends="pglobal" namespace="/">
@@ -1071,7 +1021,7 @@
             <result name="update">/pages/msgFrag.jsp</result>
         </action>
         
-<!--        
+        
         
         
         <action name="*niiConf" class="com.epic.tle.host.action.NIIAction" method="{1}">
@@ -1083,7 +1033,7 @@
             <result name="drop" type="json"></result>
             <result name="Delete" type="json"></result>
             <result name="update">/pages/msgFrag.jsp</result>
-        </action>-->
+        </action>
         
         <action name="*nii" class="com.epic.tle.host.action.NIIPopAction" method="{1}">
             <result name="Add">/pages/msgFrag.jsp</result>
@@ -1145,7 +1095,7 @@
                 <param name="contentDisposition">attachment;filename=OperationMng.pdf</param>
             </result>
         </action>
-        <!--        <action name="*oprMng" method="{1}" class="com.epic.tle.operationManagement.action.OperationManagment">
+                <action name="*oprMng" method="{1}" class="com.epic.tle.operationManagement.action.OperationManagment">
             <result name="success">/pages/operationManagement/operationManage.jsp</result>
             <result name="add" >/pages/msgFrag.jsp</result>
             <result name="update" >/pages/msgFrag.jsp</result> 
@@ -1160,8 +1110,8 @@
                 <param name="format">PDF</param>
                 <param name="contentDisposition">attachment;filename=OperationMng.pdf</param>
             </result>
-        </action>-->
-        <!--        <action name="*HostListener" method="{1}" class="com.epic.tle.host.action.ListenerManage">
+        </action>
+                <action name="*HostListener" method="{1}" class="com.epic.tle.host.action.ListenerManage">
             <result name="success">/pages/hostmanager/listnerManager.jsp</result>
             <result name="add" >/pages/msgFrag.jsp</result>
             <result name="update" >/pages/msgFrag.jsp</result> 
@@ -1169,8 +1119,8 @@
             <result name="find" type="json"></result>
             <result name="update" >/pages/msgFrag.jsp</result> 
             <result name="delete" type="json"></result>
-        </action>-->
-    </package>
+        </action>
+    </package>-->
 </struts>
 
 
