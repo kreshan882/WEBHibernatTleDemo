@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>    
+    <session-factory>
+        <property name="hibernate.c3p0.idle_test_period">3000</property>
+        <property name="hibernate.c3p0.testConnectionOnCheckout">true</property>
+        
+<!--        <property name="hibernate.default_catalog">epictle_v5ch</property>-->
+        <!--connection pool-->                
+<!--        <mapping class="com.epic.tle.mapping.EpicTleSysBlockBin"/>-->
+        <mapping class="com.epic.tle.mapping.EpicTleAlertType"/>
+        <mapping class="com.epic.tle.mapping.EpicTleUser"/>
+        <mapping class="com.epic.tle.mapping.EpicTleProfilePrivilage"/>
+        <mapping class="com.epic.tle.mapping.EpicTleResponsecode"/>
+        <mapping class="com.epic.tle.mapping.EpicTleInitconfig"/>
+        <mapping class="com.epic.tle.mapping.EpicTlePinverficationmethod"/>
+        <mapping class="com.epic.tle.mapping.EpicTleNii"/>
+        <mapping class="com.epic.tle.mapping.EpicTleSysOperation"/>
+        <mapping class="com.epic.tle.mapping.EpicTlePasswordPolicy"/>
+        <mapping class="com.epic.tle.mapping.EpicTleChannelOperationMethod"/>
+        <mapping class="com.epic.tle.mapping.EpicTleCardholders"/>
+        <mapping class="com.epic.tle.mapping.EpicTleChannel"/>
+        <mapping class="com.epic.tle.mapping.EpicTleForwardmethod"/>
+        <mapping class="com.epic.tle.mapping.EpicTleSelecteddevice"/>
+        <mapping class="com.epic.tle.mapping.EpicTleBinProfile"/>
+        <mapping class="com.epic.tle.mapping.EpicTleStatusofresponse"/>
+        <mapping class="com.epic.tle.mapping.EpicTleIsoFormat"/>
+        <mapping class="com.epic.tle.mapping.EpicTleEncryptionlevles"/>
+        <mapping class="com.epic.tle.mapping.EpicTleListeners"/>
+        <mapping class="com.epic.tle.mapping.EpicTleConnectiontypes"/>
+        <mapping class="com.epic.tle.mapping.EpicTleHeaderFormats"/>
+        <mapping class="com.epic.tle.mapping.EpicTleTask"/>
+        <mapping class="com.epic.tle.mapping.EpicTlePortconfig"/>
+        <mapping class="com.epic.tle.mapping.EpicTleHeaderSize"/>
+        <mapping class="com.epic.tle.mapping.EpicTleRiskLevel"/>
+        <mapping class="com.epic.tle.mapping.EpicTleOperationAlerts"/>
+        <mapping class="com.epic.tle.mapping.EpicTleColorFormat"/>
+        <mapping class="com.epic.tle.mapping.EpicTleModule"/>
+<!--        <mapping class="com.epic.tle.mapping.EpicTleFoundniistatus"/>-->
+        <mapping class="com.epic.tle.mapping.EpicTleTxntypes"/>
+        <mapping class="com.epic.tle.mapping.EpicTleAlerts"/>
+        <mapping class="com.epic.tle.mapping.EpicTleSection"/>
+        <mapping class="com.epic.tle.mapping.EpicTleTerminal"/>
+        <mapping class="com.epic.tle.mapping.EpicTleStatus"/>
+        <mapping class="com.epic.tle.mapping.EpicTleUserProfile"/>
+        <mapping class="com.epic.tle.mapping.EpicTleBlockBin"/>
+        <mapping class="com.epic.tle.mapping.EpicTleBlockBinId"/>
+        <mapping class="com.epic.tle.mapping.EpicTleProcessingTime"/>
+        <mapping class="com.epic.tle.mapping.EpicTleAlgorithem"/>
+        <mapping class="com.epic.tle.mapping.EpicTleReplayAttacklevel"/>
+        <mapping class="com.epic.tle.mapping.EpicTleEsmodule"/>
+        <mapping class="com.epic.tle.mapping.EpicTleHistory"/>
+        <mapping class="com.epic.tle.mapping.EpicTleLoglevel"/>
+        <mapping class="com.epic.tle.mapping.EpicTleTerminalRefprofile"/>
+        <mapping class="com.epic.tle.mapping.EpicTleLocalbin"/>
+        <mapping class="com.epic.tle.mapping.EpicTleNodetype"/>
+        <mapping class="com.epic.tle.mapping.EpicTleUserPasswordHistory"/>
+        
+        <mapping class="com.epic.tle.mapping.EpicTleSmsFilter"/>
+        <mapping class="com.epic.tle.mapping.EpicTleSmsProfile"/>
+        <mapping class="com.epic.tle.mapping.EpicTleSmsProfileInfo"/>
+        
+        
+    </session-factory>
+</hibernate-configuration>

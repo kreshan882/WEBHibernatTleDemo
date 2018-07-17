@@ -1,0 +1,1180 @@
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts> 
+    <constant name="struts.devMode" value="false" />
+     <constant name="struts.multipart.maxSize" value="500485760" />
+    <package name="pglobal" namespace="/" extends="struts-default,json-default,jasperreports-default">
+        
+        <interceptors>
+            <interceptor name="EpicTLEAccesControl" class="com.epic.tle.util.AccessControlInterceptor" />   
+            <interceptor name="EpicTLETokenControl" class="com.epic.tle.util.TokenInterceptor" />           
+            <interceptor-stack name="TLEStack">
+                <interceptor-ref name="fileUpload"/>
+                <interceptor-ref name="cookieProvider"/>
+                <interceptor-ref name="modelDriven"/>
+                <interceptor-ref name="basicStack"/>
+                <interceptor-ref name="EpicTLEAccesControl"/>  <!--name -->
+                <interceptor-ref name="workflow"/>
+                <interceptor-ref name="defaultStack"/> 
+           </interceptor-stack>
+        </interceptors>
+        
+        <default-interceptor-ref name="TLEStack"/> 
+                   
+        <global-results>
+            <result name="noaccessPage" type="chain" >logOut</result>
+            <result name="multiaccess">/pages/login/login.jsp</result>
+            <result name="invalid.token" type="chain" >warningFromCSRF</result>
+            <!--<result name="noaccessPage">/pages/msgFrag.jsp</result>-->           
+        </global-results>   
+        
+    </package>
+
+
+    <package name="TLE_Login" extends="pglobal" namespace="/" >
+
+        <default-action-ref name="init"/>
+        <!--   login action   -->
+        <action name="loginUser" class="com.epic.tle.login.action.LoginAction" method="loginCheck">
+            <interceptor-ref name="defaultStack"></interceptor-ref>
+            <result name="success">/pages/login/home.jsp</result>
+            <result name="login">/pages/login/login.jsp</result>
+            <result name="password-change">/pages/login/resetPassword.jsp</result>
+            <result name="forget-change">/pages/login/forgetPassword.jsp</result>
+        
+        </action>
+       
+        <action name="logOut" class="com.epic.tle.login.action.LoginAction" method="logoutFunction">
+            <result name="login">/pages/login/login.jsp</result>
+        </action>
+        
+        <action name="logOutFromCSRF" class="com.epic.tle.login.action.LoginAction" method="logoutFunction">
+            <result name="login">/pages/login/login.jsp</result>
+                <param name="message">csrfError</param>
+        </action>
+        
+        <action name="warningFromCSRF" class="com.epic.tle.token.action.TokenAction">
+            <result name="redirect">/pages/msgFrag.jsp</result>
+        </action>
+        <action name="homeCall" class="com.epic.tle.login.action.LoginAction" method="homeFunction">
+            <result name="success">/pages/login/home.jsp</result>        
+        </action>
+        <action name="*monitorCall" method="{1}" class="com.epic.tle.login.action.LoginAction" >
+            <result name="success" type="json"></result>       
+        </action>
+        <action name="init" class="com.epic.tle.login.action.LoginAction" method="execute">
+            <result name="success">/pages/login/login.jsp</result>
+        </action>
+        
+        <!--added by gayan-->
+         <action name="resetPassword" class="com.epic.tle.login.action.ResetPasswordAction" method="resetPassword">
+            <result name="passwordresetted">/pages/login/resetPassword.jsp</result>
+            <result name="login">/pages/login/login.jsp</result>
+        </action>
+         <action name="forgerPassword" class="com.epic.tle.login.action.ForgetPasswordAction" method="forgetPasword">
+            <result name="resetted">/pages/login/forgetPassword.jsp</result>
+            <result name="login">/pages/login/login.jsp</result>
+        </action>
+         <action name="removeSessionAttribute" class="com.epic.tle.login.action.LoginAction" method="removeSessionAttribute">
+           <result name="remove" type="json">/pages/header.jsp</result>
+        </action>
+    </package>
+
+        
+    <package name="User_Management" extends="pglobal" namespace="/">
+                
+        <action name="usrMng" class="com.epic.tle.userManagement.action.RegisterUser"> 
+            <result name="success">/pages/userManagement/registerUser.jsp</result>
+        </action>      
+        <action name="addusrMng" class="com.epic.tle.userManagement.action.RegisterUser" method="add" > 
+            <interceptor-ref name="EpicTLETokenControl"></interceptor-ref> 
+            <interceptor-ref name="defaultStack"></interceptor-ref>
+            <result name="add">/pages/msgFrag.jsp</result>
+            <result name="success">/pages/userManagement/registerUser.jsp</result>
+        </action>
+        <!--added by gayan-->
+        <action name="resetusrMng" class="com.epic.tle.userManagement.action.RegisterUser" method="resetUserPassowrd" > 
+            <interceptor-ref name="EpicTLETokenControl"></interceptor-ref> 
+            <interceptor-ref name="defaultStack"></interceptor-ref>
+            <result name="reset" type="json">/pages/msgFrag.jsp</result>
+            <!--<result name="success">/pages/userManagement/registerUser.jsp</result>-->
+        </action>
+        <action name="findusrMng" class="com.epic.tle.userManagement.action.RegisterUser" method="find" > 
+            <interceptor-ref name="EpicTLETokenControl"></interceptor-ref> 
+            <interceptor-ref name="defaultStack"></interceptor-ref>
+            <result name="find" type="json"></result>
+            <result name="success">/pages/userManagement/registerUser.jsp</result>
+        </action>
+        <action name="updateusrMng" class="com.epic.tle.userManagement.action.RegisterUser" method="update" > 
+            <interceptor-ref name="EpicTLETokenControl"></interceptor-ref> 
+            <interceptor-ref name="defaultStack"></interceptor-ref>
+            <result name="update">/pages/msgFrag.jsp</result>
+            <result name="success">/pages/userManagement/registerUser.jsp</result>
+        </action>
+        <action name="deleteusrMng" class="com.epic.tle.userManagement.action.RegisterUser" method="delete" > 
+            <interceptor-ref name="EpicTLETokenControl"></interceptor-ref> 
+            <interceptor-ref name="defaultStack"></interceptor-ref>
+            <result name="delete" type="json"></result>
+            <result name="success">/pages/userManagement/registerUser.jsp</result>
+        </action>
+        <action name="listusrMng" class="com.epic.tle.userManagement.action.RegisterUser" method="list" >
+            <result name="success">/pages/userManagement/registerUser.jsp</result>
+            <result name="list" type="json"></result>
+        </action>  
+        
+        <action name="*usrVerify" method="{1}" class="com.epic.tle.userManagement.action.UserVerification">
+            <result name="success">/pages/userManagement/userVerification.jsp</result>
+            <result name="list" type="json"></result>
+            <result name="active" type="json"></result>
+            <result name="delete" >/pages/msgFrag.jsp</result>
+        </action>
+        
+        <action name="usrChange" class="com.epic.tle.userManagement.action.ChangePassword">
+            <result name="success">/pages/userManagement/changePassword.jsp</result>
+        </action>
+        
+        <action name="changePasswordusrChange" method="changePassword" class="com.epic.tle.userManagement.action.ChangePassword">
+            <interceptor-ref name="EpicTLETokenControl"></interceptor-ref>
+            <interceptor-ref name="defaultStack"></interceptor-ref>
+            <result name="success">/pages/userManagement/changePassword.jsp</result>
+            <result name="passwordchanged">/pages/msgFrag.jsp</result>
+        </action>
+        <action name="usrPolicy" class="com.epic.tle.userManagement.action.PasswordPolicy">
+            <result name="success">/pages/userManagement/passwordPolicy.jsp</result>
+        </action>
+        <action name="resetDatausrPolicy" method="resetData" class="com.epic.tle.userManagement.action.PasswordPolicy">
+            <result name="success">/pages/userManagement/passwordPolicy.jsp</result>
+            <result name="reset" type="json">/pages/userManagement/passwordPolicy.jsp</result>
+        </action>
+        <action name="updateusrPolicy" method="update" class="com.epic.tle.userManagement.action.PasswordPolicy">
+            <interceptor-ref name="EpicTLETokenControl"></interceptor-ref> 
+            <interceptor-ref name="defaultStack"></interceptor-ref>
+            <result name="success">/pages/userManagement/passwordPolicy.jsp</result>
+            <result name="update">/pages/msgFrag.jsp</result>
+        </action>
+    </package> 
+    
+    <package name="Terminal_Management" extends="pglobal" namespace="/">     
+        <action name="regTermInvalidFileTypeOrSize" class="com.epic.tle.terminalManagement.action.RegisterTerminal">
+            <result name="success">/pages/terminalManagement/registerTerminal.jsp</result> 
+                <param name="dmessage">inavalidFileType</param>  
+        </action>      
+        <action name="regTerm" class="com.epic.tle.terminalManagement.action.RegisterTerminal">
+            <result name="success">/pages/terminalManagement/registerTerminal.jsp</result>   
+        </action>
+        <action name="addTerminalregTerm" class="com.epic.tle.terminalManagement.action.RegisterTerminal" method="addTerminal">
+            <interceptor-ref name="EpicTLETokenControl"></interceptor-ref> 
+            <interceptor-ref name="defaultStack"></interceptor-ref>
+            <result name="success">/pages/terminalManagement/registerTerminal.jsp</result>  
+            <result name="add">/pages/msgFrag.jsp</result>  
+        </action>
+       <action name="uploadFileregTerm" class="com.epic.tle.terminalManagement.action.RegisterTerminal" method="uploadFile">  
+           <interceptor-ref name="fileUpload">
+       		<param name="allowedTypes">text/plain</param>
+<!--       	<param name="maximumSize">10240</param>-->
+  	    </interceptor-ref>   
+            <interceptor-ref name="defaultStack"></interceptor-ref>    
+            <result name="success">/pages/terminalManagement/registerTerminal.jsp</result>  
+            <result name="input" type="chain">regTermInvalidFileTypeOrSize</result>
+            <result name="downloadTerList" type="stream">
+                <param name="contentType">application/octet-stream</param>
+                <param name="inputName">inputStream</param>
+                <param name="contentDisposition">attachment;filename="TerminalRegisterResult.txt"</param>
+                <param name="bufferSize">4096</param>
+            </result>   
+        </action>
+        <action name="UpdateregTerm" class="com.epic.tle.terminalManagement.action.RegisterTerminal" method="Update">
+            <interceptor-ref name="EpicTLETokenControl"></interceptor-ref> 
+            <interceptor-ref name="defaultStack"></interceptor-ref>
+            <result name="success">/pages/terminalManagement/registerTerminal.jsp</result>  
+            <result name="update" >/pages/msgFrag.jsp</result>
+        </action>
+        <action name="ListregTerm" class="com.epic.tle.terminalManagement.action.RegisterTerminal" method="List">
+            <result name="success">/pages/terminalManagement/registerTerminal.jsp</result>  
+            <result name="list" type="json"></result>
+        </action>
+        <action name="DeleteregTerm" class="com.epic.tle.terminalManagement.action.RegisterTerminal" method="Delete">
+            <interceptor-ref name="EpicTLETokenControl"></interceptor-ref> 
+            <interceptor-ref name="defaultStack"></interceptor-ref>
+            <result name="success">/pages/terminalManagement/registerTerminal.jsp</result>  
+            <result name="delete" type="json"></result> 
+        </action>
+        <action name="FindregTerm" class="com.epic.tle.terminalManagement.action.RegisterTerminal" method="Find">
+            <interceptor-ref name="EpicTLETokenControl"></interceptor-ref> 
+            <interceptor-ref name="defaultStack"></interceptor-ref>
+            <result name="success">/pages/terminalManagement/registerTerminal.jsp</result>  
+            <result name="find" type="json"></result>
+        </action>
+        <action name="XSLcreatregTerm" class="com.epic.tle.terminalManagement.action.RegisterTerminal" method="XSLcreat">
+            <result name="success">/pages/terminalManagement/registerTerminal.jsp</result>  
+             <result name="excelreportterminal" type="stream">
+                <param name="contentType">"application/vnd.ms-excel"</param>
+                <param name="inputName">excelStream</param>
+                <param name="contentDisposition">attachment;filename="terminal_report.xlsx"</param>
+                <!--<param name="bufferSize">61440</param>-->
+            </result>
+        </action>
+<!--        <action name ="*TerminalAdd" method="{1}" class="com.epic.tle.terminal.action.AddTerminal">
+            <result name="success">/pages/terminalmanager/addTerminal.jsp</result>
+            <result name="add">/pages/msgFrag.jsp</result>   
+            <result name="downloadTerList" type="stream">
+                <param name="contentType">application/octet-stream</param>
+                <param name="inputName">inputStream</param>
+                <param name="contentDisposition">attachment;filename="TerminalRegisterResult.txt"</param>
+                <param name="bufferSize">4096</param>
+            </result>                       
+        </action>
+        
+     
+        <action name ="*TerminalEditView" method="{1}" class="com.epic.tle.terminal.action.EditAndViewTerminal">
+            <result name="success">/pages/terminalmanager/editViewTerminal.jsp</result>
+            <result name="update" >/pages/msgFrag.jsp</result>
+            <result name="list" type="json"></result>
+            <result name="delete" type="json"></result>
+            <result name="find" type="json"></result>
+            <result name="excelreportterminal" type="stream">
+                <param name="contentType">"application/vnd.ms-excel"</param>
+                <param name="inputName">excelStream</param>
+                <param name="contentDisposition">attachment;filename="terminal_report.xlsx"</param>
+                <param name="bufferSize">61440</param>
+            </result>
+        </action>  
+
+        <action name ="*TerminalNonFunctioning" method="{1}" class="com.epic.tle.terminal.action.NonFunctionTerminal">
+            <result name="success">/pages/terminalmanager/nonFunctionTerminal.jsp</result>
+            <result name="list" type="json"></result>
+            <result name="excelreportnonterminal" type="stream">
+                <param name="contentType">"application/vnd.ms-excel"</param>
+                <param name="inputName">excelStream</param>
+                <param name="contentDisposition">attachment;filename="non_function_terminal_report.xlsx"</param>
+                <param name="bufferSize">61440</param>
+            </result>
+        </action>-->
+        <action name ="*nonTerm" method="{1}" class="com.epic.tle.terminalManagement.action.NonFunctionTerminal">
+            <result name="success">/pages/terminalmanager/nonFunctionTerminal.jsp</result>
+            <result name="list" type="json"></result>
+            <result name="excelreportnonterminal" type="stream">
+                <param name="contentType">"application/vnd.ms-excel"</param>
+                <param name="inputName">excelStream</param>
+                <param name="contentDisposition">attachment;filename="non_function_terminal_report.xlsx"</param>
+                <param name="bufferSize">61440</param>
+            </result>
+        </action>
+
+    </package> 
+    
+     
+    <package name="System_Tools" extends="pglobal" namespace="/">        
+        
+        <action name ="*sysHist" method="{1}" class="com.epic.tle.systemtools.action.SystemHistory">
+            <result name="success">/pages/systemtools/systemHistory.jsp</result>
+            <result name="ViewDet">/pages/systemtools/systemHistoryPopup.jsp</result>
+            <result name="list" type="json"></result>
+            <result name="excelreportsystemhistory" type="stream">
+                <param name="contentType">"application/vnd.ms-excel"</param>
+                <param name="inputName">excelStream</param>
+                <param name="contentDisposition">attachment;filename="system_history_report.xlsx"</param>
+                <param name="bufferSize">61440</param>
+                <!--<param name="maximumSize">500000</param>--> 
+            </result>
+        </action>
+        
+        <action name ="*tarPro" method="{1}" class="com.epic.tle.systemtools.action.SystemProcess">
+            <result name="success">/pages/systemtools/systemTransProcess.jsp</result>
+            <result name="list" type="json"></result>
+            <result name="excelreportsystemtransaction" type="stream">
+                <param name="contentType">"application/vnd.ms-excel"</param>
+                <param name="inputName">excelStream</param>
+                <param name="contentDisposition">attachment;filename="system_transaction_process_report.xlsx"</param>
+                <param name="bufferSize">61440</param>
+            </result>
+        </action>
+        
+        
+       <action name ="*sysAlert" method="{1}" class="com.epic.tle.systemtools.action.SystemAlerts">
+            <result name="success">/pages/systemtools/systemAlerts.jsp</result>
+            <result name="list" type="json"></result>
+            <result name="loading" type="json"></result>
+            <result name="excelreportsystemalerts" type="stream">
+                <param name="contentType">"application/vnd.ms-excel"</param>
+                <param name="inputName">excelStream</param>
+                <param name="contentDisposition">attachment;filename="system_alerts_report.xlsx"</param>
+                <param name="bufferSize">61440</param>
+            </result>
+            <result name="zip" type="stream">
+                <param name="contentDisposition">attachment;filename="syatem_alert_report.zip"</param>
+                <param name="contentType">application/octet-stream</param>
+                <param name="inputName">zipStream</param>
+                <param name="bufferSize">61440</param>
+            </result>
+        </action>
+        
+        
+        <!--        <action name ="*SystemAlerts" method="{1}" class="com.epic.tle.systemtools.action.SystemAlerts">
+            <result name="success">/pages/systemtools/systemAlerts.jsp</result>
+            <result name="list" type="json"></result>
+            <result name="excelreportsystemalerts" type="stream">
+                <param name="contentType">"application/vnd.ms-excel"</param>
+                <param name="inputName">excelStream</param>
+                <param name="contentDisposition">attachment;filename="system_alerts_report.xlsx"</param>
+                <param name="bufferSize">61440</param>
+            </result>
+            <result name="zip" type="stream">
+                <param name="contentDisposition">attachment;filename="syatem_alert_report.zip"</param>
+                <param name="contentType">application/octet-stream</param>
+                <param name="inputName">zipStream</param>
+                <param name="bufferSize">61440</param>
+            </result>
+        </action>-->
+        
+        <!--        <action name ="*transFail" method="{1}" class="com.epic.tle.systemtools.action.TransactionsFailing">
+            <result name="success">/pages/systemtools/transectionFail.jsp</result>
+            <result name="list" type="json"></result>            
+            <result name="excelreporttransactionfailing" type="stream">
+                <param name="contentType">"application/vnd.ms-excel"</param>
+                <param name="inputName">excelStream</param>
+                <param name="contentDisposition">attachment;filename="transaction_failing_report.xlsx"</param>
+                <param name="bufferSize">61440</param>
+            </result>
+            <result name="zip" type="stream">
+                <param name="contentDisposition">attachment;filename="transaction_failing_report.zip"</param>
+                <param name="contentType">application/octet-stream</param>
+                <param name="inputName">zipStream</param>
+                <param name="bufferSize">61440</param>
+            </result>
+        </action>-->
+        <!--        <action name ="*SystemTxnFail" method="{1}" class="com.epic.tle.systemtools.action.TransactionsFailing">
+            <result name="success">/pages/systemtools/transectionFail.jsp</result>
+            <result name="list" type="json"></result>            
+            <result name="excelreporttransactionfailing" type="stream">
+                <param name="contentType">"application/vnd.ms-excel"</param>
+                <param name="inputName">excelStream</param>
+                <param name="contentDisposition">attachment;filename="transaction_failing_report.xlsx"</param>
+                <param name="bufferSize">61440</param>
+            </result>
+            <result name="zip" type="stream">
+                <param name="contentDisposition">attachment;filename="transaction_failing_report.zip"</param>
+                <param name="contentType">application/octet-stream</param>
+                <param name="inputName">zipStream</param>
+                <param name="bufferSize">61440</param>
+            </result>
+        </action>-->
+                  
+    </package> 
+    
+    <package name="UserProfile_Management" extends="pglobal" namespace="/">
+        <!--        <action name="*UserProfileAdd" method="{1}" class="com.epic.tle.userprofile.action.AddUserProfile" >
+            <result name="success">/pages/userprofile/addUserProfile.jsp</result>
+            <result name="loadmodulepages" type="json"></result>                    
+            <result name="submit">/pages/userprofile/addUserProfile.jsp</result>        
+        </action>     -->
+        <!--        <action name="*UserProfileEditView" class="com.epic.tle.userprofile.action.EditViewUserProfile" method="{1}">
+            <result name="success">/pages/userprofile/editAndViewUserProfile.jsp</result>
+            <result name="list" type="json"></result> 
+            <result name="load" type="json"></result>
+            <result name="pagemap" type="json"></result>
+            <result name="update">/pages/msgFrag.jsp</result>
+            <result name="delete" type="json"></result>
+        </action>-->
+        
+        
+        
+        <action name="profReg" class="com.epic.tle.profile.action.UserProfileManagement">
+            <result name="success">/pages/userprofile/registerUserProfiles.jsp</result>               
+        </action>
+        
+        <action name="ListprofReg" class="com.epic.tle.profile.action.UserProfileManagement" method="List">
+            <result name="success">/pages/userprofile/registerUserProfiles.jsp</result>
+            <result name="list" type="json"></result>                       
+        </action>
+        
+        
+        <action name="LoadprofReg" class="com.epic.tle.profile.action.UserProfileManagement" method="Load">
+            <interceptor-ref name="EpicTLETokenControl"></interceptor-ref> 
+            <interceptor-ref name="defaultStack"></interceptor-ref>
+            <result name="success">/pages/userprofile/registerUserProfiles.jsp</result>
+            <result name="load" type="json"></result>                          
+        </action>
+        
+        
+        <action name="pagemapprofReg" class="com.epic.tle.profile.action.UserProfileManagement" method="{1}">
+            <interceptor-ref name="EpicTLETokenControl"></interceptor-ref> 
+            <interceptor-ref name="defaultStack"></interceptor-ref>
+            <result name="success">/pages/userprofile/registerUserProfiles.jsp</result>
+            <result name="pagemap" type="json"></result>             
+        </action>
+        
+        <action name="UpdateprofReg" class="com.epic.tle.profile.action.UserProfileManagement" method="Update">
+            <interceptor-ref name="EpicTLETokenControl"></interceptor-ref> 
+            <interceptor-ref name="defaultStack"></interceptor-ref>
+            <result name="success">/pages/userprofile/registerUserProfiles.jsp</result>
+            <result name="update" type="json"></result>                         
+        </action>
+
+        <action name="AddprofReg" class="com.epic.tle.profile.action.UserProfileManagement" method="Add">
+            <interceptor-ref name="EpicTLETokenControl"></interceptor-ref> 
+            <interceptor-ref name="defaultStack"></interceptor-ref>
+            <result name="success">/pages/userprofile/registerUserProfiles.jsp</result>        
+            <result name="add" type="json"></result>              
+        </action>
+        
+        <action name="DeleteprofReg" class="com.epic.tle.profile.action.UserProfileManagement" method="Delete">
+            <interceptor-ref name="EpicTLETokenControl"></interceptor-ref> 
+            <interceptor-ref name="defaultStack"></interceptor-ref>
+            <result name="success">/pages/userprofile/registerUserProfiles.jsp</result>
+            <result name="delete" type="json"></result>                      
+        </action>
+        
+        <action name="loadPagesprofReg" class="com.epic.tle.profile.action.UserProfileManagement" method="loadPages">
+            <interceptor-ref name="EpicTLETokenControl"></interceptor-ref> 
+            <interceptor-ref name="defaultStack"></interceptor-ref>
+            <result name="success">/pages/userprofile/registerUserProfiles.jsp</result>         
+            <result name="loadmodulepages" type="json"></result>              
+        </action>
+        
+        <action name="loadTasksprofReg" class="com.epic.tle.profile.action.UserProfileManagement" method="loadTasks">
+            <interceptor-ref name="EpicTLETokenControl"></interceptor-ref> 
+            <interceptor-ref name="defaultStack"></interceptor-ref>
+            <result name="success">/pages/userprofile/registerUserProfiles.jsp</result>         
+            <result name="loadmodulepages" type="json"></result>              
+        </action>		
+    </package>
+    
+    <package name="LogManagement" extends="pglobal"   namespace="/">                 
+        <action name="*logView" method="{1}" class="com.epic.tle.log.action.ViewLogs" >
+            <result name="success">/pages/logmanager/viewLogs.jsp</result>
+            <result name="list" type="json" ></result>                     
+            <result name="download" type="stream">
+                <param name="contentType">application/octet-stream</param>
+                <param name="inputName">inputStream</param>
+                <param name="contentDisposition">attachment;filename="${fileName}"</param>
+                <param name="bufferSize">104096</param>
+            </result>
+            <result name="downloadselectedlog" type="stream">
+                <param name="contentType">application/octet-stream</param>
+                <param name="inputName">inputStream</param>
+                <param name="contentDisposition">attachment;filename="${fileName}"</param>
+                <param name="bufferSize">104096</param>
+            </result>
+            <result name="delete" type="json" ></result> 
+            <result name="clearlog" type="json" ></result>                       
+        </action>
+        <!--        <action name="*LogView" method="{1}" class="com.epic.tle.log.action.ViewLogs" >
+            <result name="success">/pages/logmanager/viewLogs.jsp</result>
+            <result name="list" type="json" ></result>                     
+            <result name="download" type="stream">
+                <param name="contentType">application/octet-stream</param>
+                <param name="inputName">inputStream</param>
+                <param name="contentDisposition">attachment;filename="${fileName}"</param>
+                <param name="bufferSize">104096</param>
+            </result>
+            <result name="downloadselectedlog" type="stream">
+                <param name="contentType">application/octet-stream</param>
+                <param name="inputName">inputStream</param>
+                <param name="contentDisposition">attachment;filename="${fileName}"</param>
+                <param name="bufferSize">104096</param>
+            </result>
+            <result name="delete" type="json" ></result> 
+            <result name="clearlog" type="json" ></result>                       
+        </action>-->
+    </package> 
+   
+    <package name="FieldEngineerManagement" extends="pglobal"   namespace="/">         
+           
+        <action name="*keyField" class="com.epic.tle.FieldEngineerManagement.action.KeyInjection" method="{1}">
+            <result name="success">/pages/fieldengineer/keyInjection.jsp</result>  
+            <!--<result name="add">/pages/msgFrag.jsp</result>--> 
+            <result name="add" type="json"></result> 
+            <result name="PdfDownloadKeyMail" type="jasper">            
+                <param name="location">/resources/jReport/POSTreminal.jasper</param>
+                <param name="dataSource">reportdatalist</param>
+                <param name="format">PDF</param>
+                <param name="reportParameters">parameterMap</param>
+                <param name="contentDisposition">attachment;filename=${filename}</param>
+            </result> 
+        </action>
+        
+        <action name="regField" class="com.epic.tle.FieldEngineerManagement.action.RegisterFieldEngineer">               
+            <result name="success">/pages/fieldengineer/RegisterFieldEngineer.jsp</result>
+         </action>        
+         <action name="AddregField" class="com.epic.tle.FieldEngineerManagement.action.RegisterFieldEngineer" method="Add">               
+            <interceptor-ref name="EpicTLETokenControl"></interceptor-ref> 
+            <interceptor-ref name="defaultStack"></interceptor-ref>
+            <result name="success">/pages/fieldengineer/RegisterFieldEngineer.jsp</result>
+            <result name="addfe" type="json"></result> 
+         </action>
+         <action name="downloadpdfregField" class="com.epic.tle.FieldEngineerManagement.action.RegisterFieldEngineer" method="downloadpdf">               
+            <result name="success">/pages/fieldengineer/RegisterFieldEngineer.jsp</result>
+            <result name="pdfDownloadFE" type="jasper">            
+                <param name="location">/resources/jReport/SmartCardJasper.jasper</param>
+                <param name="dataSource">reportdatalist</param>
+                <param name="format">PDF</param>
+                <param name="reportParameters">parameterMap</param>
+                <param name="contentDisposition">attachment;filename=${filename}</param>
+            </result>  
+         </action>
+         <action name="ListregField" class="com.epic.tle.FieldEngineerManagement.action.RegisterFieldEngineer" method="List">               
+            <result name="success">/pages/fieldengineer/RegisterFieldEngineer.jsp</result>
+            <result name="list" type="json" ></result> 
+         </action>
+         <action name="DeleteregField" class="com.epic.tle.FieldEngineerManagement.action.RegisterFieldEngineer" method="Delete">  
+            <interceptor-ref name="EpicTLETokenControl"></interceptor-ref> 
+            <interceptor-ref name="defaultStack"></interceptor-ref>             
+            <result name="success">/pages/fieldengineer/RegisterFieldEngineer.jsp</result>
+            <result name="delete" type="json" ></result> 
+         </action>
+         <action name="FindregField" class="com.epic.tle.FieldEngineerManagement.action.RegisterFieldEngineer" method="Find">  
+            <interceptor-ref name="EpicTLETokenControl"></interceptor-ref> 
+            <interceptor-ref name="defaultStack"></interceptor-ref>
+            <result name="success">/pages/fieldengineer/RegisterFieldEngineer.jsp</result>
+            <result name="find" type="json" ></result> 
+         </action>
+         <action name="UpdateregField" class="com.epic.tle.FieldEngineerManagement.action.RegisterFieldEngineer" method="Update"> 
+            <interceptor-ref name="EpicTLETokenControl"></interceptor-ref> 
+            <interceptor-ref name="defaultStack"></interceptor-ref>              
+            <result name="success">/pages/fieldengineer/RegisterFieldEngineer.jsp</result>
+            <result name="update" >/pages/msgFrag.jsp</result> 
+         </action>
+          <action name="XSLcreatregField" class="com.epic.tle.FieldEngineerManagement.action.RegisterFieldEngineer" method="XSLcreat">               
+            <result name="success">/pages/fieldengineer/RegisterFieldEngineer.jsp</result>
+            <result name="excelreportfieldeng" type="stream">
+                <param name="contentType">"application/vnd.ms-excel"</param>
+                <param name="inputName">excelStream</param>
+                <param name="contentDisposition">attachment;filename="Field_Engineer_Report.xlsx"</param>
+                <param name="bufferSize">61440</param>
+            </result>
+         </action>
+          <action name="XSLcreat1regField" class="com.epic.tle.FieldEngineerManagement.action.RegisterFieldEngineer" method="XSLcreat1">               
+            <result name="success">/pages/fieldengineer/RegisterFieldEngineer.jsp</result>
+            <result name="excelreportfieldeng1" type="stream">
+                <param name="contentType">"application/vnd.ms-excel"</param>
+                <param name="inputName">excelStream</param>
+                <param name="contentDisposition">attachment;filename="Terminals_Report.xlsx"</param>
+                <param name="bufferSize">61440</param>
+            </result> 
+         </action>
+          <action name="PinResetregField" class="com.epic.tle.FieldEngineerManagement.action.RegisterFieldEngineer" method="PinReset">               
+            <interceptor-ref name="EpicTLETokenControl"></interceptor-ref> 
+            <interceptor-ref name="defaultStack"></interceptor-ref>
+            <result name="success">/pages/fieldengineer/RegisterFieldEngineer.jsp</result>
+            <result name="pinreset" type="json"></result>
+         </action>       
+    </package> 
+    
+    <package name ="ServerManager" extends="pglobal"   namespace="/">
+
+        <action name="*sessConf" method="{1}" class="com.epic.tle.servermanager.action.SessionConfiguration">
+            <result name="success">/pages/servermanager/sessionConf.jsp</result>
+            <result name="update" >/pages/msgFrag.jsp</result> 
+            <result name="reset" type="json"></result>
+        </action>
+        
+
+        <action name="portConf" class="com.epic.tle.servermanager.action.PortConfiguration">
+            <result name="success">/pages/servermanager/portConf.jsp</result>
+        </action>
+        <action name="ListportConf" method="List" class="com.epic.tle.servermanager.action.PortConfiguration">
+            <result name="success">/pages/servermanager/portConf.jsp</result>
+            <result name="list" type="json"></result>
+        </action>
+        <action name="FindportConf" method="Find" class="com.epic.tle.servermanager.action.PortConfiguration">
+            <interceptor-ref name="EpicTLETokenControl"></interceptor-ref> 
+            <interceptor-ref name="defaultStack"></interceptor-ref>
+            <result name="success">/pages/servermanager/portConf.jsp</result>
+            <result name="find" type="json"></result>
+        </action>
+        <action name="UpdateportConf" method="Update" class="com.epic.tle.servermanager.action.PortConfiguration">
+            <interceptor-ref name="EpicTLETokenControl"></interceptor-ref> 
+            <interceptor-ref name="defaultStack"></interceptor-ref>
+            <result name="success">/pages/servermanager/portConf.jsp</result>
+            <result name="update" >/pages/msgFrag.jsp</result>
+        </action>
+<!--        <action name="*portConf" method="{1}" class="com.epic.tle.servermanager.action.PortConfiguration">
+            <result name="success">/pages/servermanager/portConf.jsp</result>
+            <result name="list" type="json"></result>
+            <result name="find" type="json"></result>
+            <result name="update" >/pages/msgFrag.jsp</result>
+        </action>-->
+        
+         <action name ="servConf" class="com.epic.tle.servermanager.action.ServerConfiguration">
+            <result name="success">/pages/servermanager/serverConf.jsp</result>           
+        </action>
+         <action name ="UpdateservConf" method="Update" class="com.epic.tle.servermanager.action.ServerConfiguration">
+            <interceptor-ref name="EpicTLETokenControl"></interceptor-ref> 
+            <interceptor-ref name="defaultStack"></interceptor-ref>
+            <result name="success">/pages/servermanager/serverConf.jsp</result>
+            <result name="update" >/pages/msgFrag.jsp</result>                            
+        </action>
+         <action name ="ResetDataservConf" method="ResetData" class="com.epic.tle.servermanager.action.ServerConfiguration">
+            <interceptor-ref name="EpicTLETokenControl"></interceptor-ref> 
+            <interceptor-ref name="defaultStack"></interceptor-ref>
+            <result name="success">/pages/servermanager/serverConf.jsp</result>              
+            <result name="reset" type="json"></result>            
+        </action>
+       
+<!--        <action name ="*servConf" method="{1}" class="com.epic.tle.servermanager.action.ServerConfiguration">
+            <result name="success">/pages/servermanager/serverConf.jsp</result>
+            <result name="update" >/pages/msgFrag.jsp</result>                
+            <result name="reset" type="json"></result>            
+        </action>-->
+        
+        
+        <action name ="resConf" class="com.epic.tle.servermanager.action.ResponseConfiguration">
+            <result name="success">/pages/servermanager/responseConf.jsp</result>          
+        </action>
+        <action name ="UpdateresConf" method="Update" class="com.epic.tle.servermanager.action.ResponseConfiguration">
+            <interceptor-ref name="EpicTLETokenControl"></interceptor-ref> 
+            <interceptor-ref name="defaultStack"></interceptor-ref>
+            <result name="success">/pages/servermanager/responseConf.jsp</result>
+            <result name="update" >/pages/msgFrag.jsp</result>                           
+        </action>
+        <action name ="ResetDataresConf" method="ResetData" class="com.epic.tle.servermanager.action.ResponseConfiguration">
+            <interceptor-ref name="EpicTLETokenControl"></interceptor-ref> 
+            <interceptor-ref name="defaultStack"></interceptor-ref>
+            <result name="success">/pages/servermanager/responseConf.jsp</result>              
+            <result name="reset" type="json"></result>            
+        </action>
+        
+<!--        
+        <action name ="*resConf" method="{1}" class="com.epic.tle.servermanager.action.ResponseConfiguration">
+            <result name="success">/pages/servermanager/responseConf.jsp</result>
+            <result name="update" >/pages/msgFrag.jsp</result>                
+            <result name="reset" type="json"></result>            
+        </action>-->
+       
+        <action name="smsProf" class="com.epic.tle.servermanager.action.SMSProfile" method="execute">
+            <result name="success">/pages/servermanager/smsProfile.jsp</result>
+        </action>
+        <action name="Addgroup" class="com.epic.tle.servermanager.action.SMSProfile" method="Add">
+            <interceptor-ref name="EpicTLETokenControl"></interceptor-ref> 
+            <interceptor-ref name="defaultStack"></interceptor-ref>
+            <result name="success">/pages/servermanager/smsProfile.jsp</result>
+            <result name="Add">/pages/msgFrag.jsp</result>
+        </action>
+         <action name="listsmsProf" class="com.epic.tle.servermanager.action.SMSProfile" method="list">
+          
+            <result name="list" type="json">/pages/servermanager/smsProfile.jsp</result>
+        </action>
+       
+           <action name="LoadSMSPrf" class="com.epic.tle.servermanager.action.SMSProfile" method="Load">
+            <interceptor-ref name="EpicTLETokenControl"></interceptor-ref> 
+            <interceptor-ref name="defaultStack"></interceptor-ref>
+            <result name="success">/pages/servermanager/smsProfile.jsp</result>
+            <result name="load" type="json"></result>
+        </action> 
+        
+        <action name="updateSMSPrf" class="com.epic.tle.servermanager.action.SMSProfile" method="update">
+            <interceptor-ref name="EpicTLETokenControl"></interceptor-ref> 
+            <interceptor-ref name="defaultStack"></interceptor-ref>
+            <result name="success">/pages/servermanager/smsProfile.jsp</result>
+            <result name="update">/pages/msgFrag.jsp</result>
+        </action>
+        
+          <action name="DeleteSMSPrf" class="com.epic.tle.servermanager.action.SMSProfile" method="Delete">
+            <interceptor-ref name="EpicTLETokenControl"></interceptor-ref> 
+            <interceptor-ref name="defaultStack"></interceptor-ref>
+            <result name="success">/pages/servermanager/smsProfile.jsp</result>
+            <result name="Delete" type="json"></result>
+        </action>
+        
+         <action name="AssignInfo" class="com.epic.tle.servermanager.action.SMSProfile" method="AssignInfo">
+            <interceptor-ref name="EpicTLETokenControl"></interceptor-ref> 
+            <interceptor-ref name="defaultStack"></interceptor-ref>
+            <result name="success">/pages/servermanager/smsProfile.jsp</result>
+            <result name="Assign">/pages/servermanager/popUpAssignInfo.jsp</result>
+        </action>
+         <action name="AddInfo" class="com.epic.tle.servermanager.action.SMSInfo" method="Add">
+            <interceptor-ref name="EpicTLETokenControl"></interceptor-ref> 
+            <interceptor-ref name="defaultStack"></interceptor-ref>
+            <result name="Add">/pages/msgFrag.jsp</result>
+        </action>
+        
+        <action name="listInfo" class="com.epic.tle.servermanager.action.SMSInfo" method="list">
+            <result name="list" type="json">/pages/servermanager/popUpAssignInfo.jsp</result>
+        </action>
+        
+        <action name="DeleteInfo" class="com.epic.tle.servermanager.action.SMSInfo" method="Delete">
+            <interceptor-ref name="EpicTLETokenControl"></interceptor-ref> 
+            <interceptor-ref name="defaultStack"></interceptor-ref>
+            <result name="Delete" type="json"></result>
+        </action>
+        
+        <action name="FilterSMS" class="com.epic.tle.servermanager.action.SMSProfile" method="FilterSMS">
+            <interceptor-ref name="EpicTLETokenControl"></interceptor-ref> 
+            <interceptor-ref name="defaultStack"></interceptor-ref>
+            <result name="success">/pages/servermanager/smsProfile.jsp</result>
+            <result name="Filter">/pages/servermanager/popUpFilter.jsp</result>
+        </action>
+        <action name="listMessage" class="com.epic.tle.servermanager.action.FilterMessage" method="list">
+            <result name="list" type="json">/pages/servermanager/popUpFilter.jsp</result>
+        </action>
+        <action name="AddSMS" class="com.epic.tle.servermanager.action.FilterMessage" method="Add">
+            <interceptor-ref name="EpicTLETokenControl"></interceptor-ref> 
+            <interceptor-ref name="defaultStack"></interceptor-ref>
+            <result name="Add">/pages/msgFrag.jsp</result>
+        </action>
+         <action name="DeleteMessage" class="com.epic.tle.servermanager.action.FilterMessage" method="Delete">
+            <interceptor-ref name="EpicTLETokenControl"></interceptor-ref> 
+            <interceptor-ref name="defaultStack"></interceptor-ref>
+            <result name="Delete" type="json"></result>
+        </action>
+           
+    </package>
+    
+        
+    <package name ="HostManager" extends="pglobal"   namespace="/">
+<!--        <action name="*listMng" method="{1}" class="com.epic.tle.host.action.ListenerManage">
+            <result name="success">/pages/hostmanager/listnerManager.jsp</result>
+            <result name="add" >/pages/msgFrag.jsp</result>
+            <result name="update" >/pages/msgFrag.jsp</result> 
+            <result name="list" type="json"></result>
+            <result name="find" type="json"></result>
+            <result name="update" >/pages/msgFrag.jsp</result> 
+            <result name="delete" type="json"></result>
+        </action>-->
+        <action name="listMng" class="com.epic.tle.host.action.ListenerManage">
+            <result name="success">/pages/hostmanager/listnerManager.jsp</result>
+        </action>
+        <action name="AddlistMng" method="Add" class="com.epic.tle.host.action.ListenerManage">
+            <interceptor-ref name="EpicTLETokenControl"></interceptor-ref> 
+            <interceptor-ref name="defaultStack"></interceptor-ref>
+            <result name="success">/pages/hostmanager/listnerManager.jsp</result>
+            <result name="add" >/pages/msgFrag.jsp</result>
+        </action>
+        <action name="ListlistMng" method="List" class="com.epic.tle.host.action.ListenerManage">
+            <result name="success">/pages/hostmanager/listnerManager.jsp</result>
+            <result name="list" type="json"></result>
+        </action>
+        <action name="FindlistMng" method="Find" class="com.epic.tle.host.action.ListenerManage">
+            <interceptor-ref name="EpicTLETokenControl"></interceptor-ref> 
+            <interceptor-ref name="defaultStack"></interceptor-ref>
+            <result name="success">/pages/hostmanager/listnerManager.jsp</result>
+            <result name="find" type="json"></result>
+        </action>
+        <action name="UpdatelistMng" method="Update" class="com.epic.tle.host.action.ListenerManage">
+            <interceptor-ref name="EpicTLETokenControl"></interceptor-ref> 
+            <interceptor-ref name="defaultStack"></interceptor-ref>
+            <result name="success">/pages/hostmanager/listnerManager.jsp</result>
+            <result name="update" >/pages/msgFrag.jsp</result> 
+        </action>
+        <action name="DeletelistMng" method="Delete" class="com.epic.tle.host.action.ListenerManage">
+            <interceptor-ref name="EpicTLETokenControl"></interceptor-ref> 
+            <interceptor-ref name="defaultStack"></interceptor-ref>
+            <result name="success">/pages/hostmanager/listnerManager.jsp</result>
+            <result name="delete" type="json"></result>
+        </action>
+        
+        <!--        <action name="*HostListener" method="{1}" class="com.epic.tle.host.action.ListenerManage">
+            <result name="success">/pages/hostmanager/listnerManager.jsp</result>
+            <result name="add" >/pages/msgFrag.jsp</result>
+            <result name="update" >/pages/msgFrag.jsp</result> 
+            <result name="list" type="json"></result>
+            <result name="find" type="json"></result>
+            <result name="update" >/pages/msgFrag.jsp</result> 
+            <result name="delete" type="json"></result>
+        </action>-->
+        
+        <!--        <action name="*HostChannel" method="{1}" class="com.epic.tle.host.action.ChannelManage">
+            <result name="success">/pages/hostmanager/channelManager.jsp</result>
+            <result name="add" >/pages/msgFrag.jsp</result>
+            <result name="update" >/pages/msgFrag.jsp</result> 
+            <result name="list" type="json"></result>
+            <result name="find" type="json"></result>
+            <result name="update" >/pages/msgFrag.jsp</result> 
+            <result name="delete" type="json"></result>
+        </action>-->
+        <action name="chanMng" class="com.epic.tle.host.action.ChannelManage">
+            <result name="success">/pages/hostmanager/channelManager.jsp</result>
+        </action>
+        <action name="AddNIIchanMng" method="AddNII" class="com.epic.tle.host.action.ChannelManage">
+            <interceptor-ref name="EpicTLETokenControl"></interceptor-ref> 
+            <interceptor-ref name="defaultStack"></interceptor-ref>
+            <result name="success">/pages/hostmanager/channelManager.jsp</result>
+            <result name="assign">/pages/hostmanager/popAddNII.jsp</result>
+        </action>
+        <action name="AssignNIIchanMng" method="AssignNII" class="com.epic.tle.host.action.ChannelManage">
+            <interceptor-ref name="EpicTLETokenControl"></interceptor-ref> 
+            <interceptor-ref name="defaultStack"></interceptor-ref>
+            <result name="success">/pages/hostmanager/channelManager.jsp</result>
+            <result name="assign">/pages/hostmanager/popAddNII.jsp</result>
+        </action>
+        <action name="listniichanMng" method="listnii" class="com.epic.tle.host.action.ChannelManage">
+            <result name="success">/pages/hostmanager/channelManager.jsp</result>
+            <result name="assign">/pages/hostmanager/popAddNII.jsp</result>
+        </action>
+        <action name="AddchanMng" method="Add" class="com.epic.tle.host.action.ChannelManage">
+            <interceptor-ref name="EpicTLETokenControl"></interceptor-ref> 
+            <interceptor-ref name="defaultStack"></interceptor-ref>
+            <result name="success">/pages/hostmanager/channelManager.jsp</result>
+            <result name="add" >/pages/msgFrag.jsp</result>
+        </action>
+        <action name="UpdatechanMng" method="Update" class="com.epic.tle.host.action.ChannelManage">
+            <interceptor-ref name="EpicTLETokenControl"></interceptor-ref> 
+            <interceptor-ref name="defaultStack"></interceptor-ref>
+            <result name="success">/pages/hostmanager/channelManager.jsp</result>
+            <result name="update" >/pages/msgFrag.jsp</result> 
+        </action>
+        <action name="ListchanMng" method="List" class="com.epic.tle.host.action.ChannelManage">
+            <result name="success">/pages/hostmanager/channelManager.jsp</result>
+            <result name="list" type="json"></result>          
+        </action>
+        <action name="FindchanMng" method="Find" class="com.epic.tle.host.action.ChannelManage">
+            <interceptor-ref name="EpicTLETokenControl"></interceptor-ref> 
+            <interceptor-ref name="defaultStack"></interceptor-ref>
+            <result name="success">/pages/hostmanager/channelManager.jsp</result>
+            <result name="find" type="json"></result>
+        </action>
+        <action name="DeletechanMng" method="Delete" class="com.epic.tle.host.action.ChannelManage">
+            <interceptor-ref name="EpicTLETokenControl"></interceptor-ref> 
+            <interceptor-ref name="defaultStack"></interceptor-ref>
+            <result name="success">/pages/hostmanager/channelManager.jsp</result>
+            <result name="delete" type="json"></result>
+        </action>
+<!--         <action name="*chanMng" method="{1}" class="com.epic.tle.host.action.ChannelManage">
+            <result name="success">/pages/hostmanager/channelManager.jsp</result>
+            <result name="assign">/pages/hostmanager/popAddNII.jsp</result>
+            <result name="add" >/pages/msgFrag.jsp</result>
+            <result name="update" >/pages/msgFrag.jsp</result> 
+            <result name="list" type="json"></result>
+            <result name="find" type="json"></result>
+            <result name="update" >/pages/msgFrag.jsp</result> 
+            <result name="delete" type="json"></result>
+        </action>-->
+    </package>
+    
+    <package name="BinManagement" extends="pglobal" namespace="/">
+        
+        <action name="blockBPrf" class="com.epic.tle.binManagement.action.BlockBinProfile">
+            <result name="success">/pages/binManagement/blockBinProfile.jsp</result>
+        </action>
+         <action name="listblockBPrf" class="com.epic.tle.binManagement.action.BlockBinProfile" method="list">
+            <result name="success">/pages/binManagement/blockBinProfile.jsp</result>
+            <result name="list" type="json">/pages/binManagement/blockBinProfile.jsp</result>
+        </action>
+         <action name="AddblockBPrf" class="com.epic.tle.binManagement.action.BlockBinProfile" method="Add">
+            <interceptor-ref name="EpicTLETokenControl"></interceptor-ref> 
+            <interceptor-ref name="defaultStack"></interceptor-ref>
+            <result name="success">/pages/binManagement/blockBinProfile.jsp</result>
+            <result name="Add">/pages/msgFrag.jsp</result>
+        </action>
+         <action name="AssignBinblockBPrf" class="com.epic.tle.binManagement.action.BlockBinProfile" method="AssignBin">
+            <interceptor-ref name="EpicTLETokenControl"></interceptor-ref> 
+            <interceptor-ref name="defaultStack"></interceptor-ref>
+            <result name="success">/pages/binManagement/blockBinProfile.jsp</result>
+            <result name="Assign">/pages/binManagement/popUpAssignBin.jsp</result>
+        </action>
+         <action name="LoadblockBPrf" class="com.epic.tle.binManagement.action.BlockBinProfile" method="Load">
+            <interceptor-ref name="EpicTLETokenControl"></interceptor-ref> 
+            <interceptor-ref name="defaultStack"></interceptor-ref>
+            <result name="success">/pages/binManagement/blockBinProfile.jsp</result>
+            <result name="load" type="json"></result>
+        </action>
+         <action name="DeleteblockBPrf" class="com.epic.tle.binManagement.action.BlockBinProfile" method="Delete">
+            <interceptor-ref name="EpicTLETokenControl"></interceptor-ref> 
+            <interceptor-ref name="defaultStack"></interceptor-ref>
+            <result name="success">/pages/binManagement/blockBinProfile.jsp</result>
+            <result name="Delete" type="json"></result>
+        </action>
+         <action name="updateblockBPrf" class="com.epic.tle.binManagement.action.BlockBinProfile" method="update">
+            <interceptor-ref name="EpicTLETokenControl"></interceptor-ref> 
+            <interceptor-ref name="defaultStack"></interceptor-ref>
+            <result name="success">/pages/binManagement/blockBinProfile.jsp</result>
+            <result name="update">/pages/msgFrag.jsp</result>
+        </action>
+<!--         <action name="*blockBPrf" class="com.epic.tle.binManagement.action.BlockBinProfile" method="{1}">
+            <result name="success">/pages/binManagement/blockBinProfile.jsp</result>
+            <result name="list" type="json">/pages/binManagement/blockBinProfile.jsp</result>
+            <result name="Add">/pages/msgFrag.jsp</result>
+            <result name="Assign">/pages/binManagement/popUpAssignBin.jsp</result>
+            <result name="load" type="json"></result>
+            <result name="Delete" type="json"></result>
+            <result name="update">/pages/msgFrag.jsp</result>
+        </action>-->
+        
+        <action name="bin" class="com.epic.tle.binManagement.action.BinProfile">
+        </action>
+        <action name="Addbin" class="com.epic.tle.binManagement.action.BinProfile" method="Add">
+            <interceptor-ref name="EpicTLETokenControl"></interceptor-ref> 
+            <interceptor-ref name="defaultStack"></interceptor-ref>
+            <result name="Add">/pages/msgFrag.jsp</result>
+        </action>
+        <action name="loadbin" class="com.epic.tle.binManagement.action.BinProfile" method="load">
+            <interceptor-ref name="EpicTLETokenControl"></interceptor-ref> 
+            <interceptor-ref name="defaultStack"></interceptor-ref>
+            <result name="load" type="json"></result>
+        </action>
+        <action name="listbin" class="com.epic.tle.binManagement.action.BinProfile" method="list">
+            <result name="list" type="json">/pages/binManagement/popUpAssignBin.jsp</result>
+        </action>
+        <action name="Deletebin" class="com.epic.tle.binManagement.action.BinProfile" method="Delete">
+            <interceptor-ref name="EpicTLETokenControl"></interceptor-ref> 
+            <interceptor-ref name="defaultStack"></interceptor-ref>
+            <result name="Delete" type="json"></result>
+        </action>
+        <action name="updatebin" class="com.epic.tle.binManagement.action.BinProfile" method="update">
+            <interceptor-ref name="EpicTLETokenControl"></interceptor-ref> 
+            <interceptor-ref name="defaultStack"></interceptor-ref>
+            <result name="update" type="json"></result>
+        </action>
+<!--        <action name="*bin" class="com.epic.tle.binManagement.action.BinProfile" method="{1}">
+            <result name="Add">/pages/msgFrag.jsp</result>
+            <result name="list" type="json">/pages/binManagement/popUpAssignBin.jsp</result>
+            <result name="load" type="json"></result>
+            <result name="Delete" type="json"></result>
+            <result name="update" type="json"></result>
+        </action>-->
+        
+        <action name="refBPrf" class="com.epic.tle.binManagement.action.RefTerminalProfile">
+            <result name="success">/pages/binManagement/refTerminalProfile.jsp</result>
+        </action>
+        <action name="listrefBPrf" class="com.epic.tle.binManagement.action.RefTerminalProfile" method="list">
+            <result name="success">/pages/binManagement/refTerminalProfile.jsp</result>
+            <result name="list" type="json">/pages/binManagement/blockBinProfile.jsp</result>
+        </action>
+        <action name="AddrefBPrf" class="com.epic.tle.binManagement.action.RefTerminalProfile" method="Add">
+            <interceptor-ref name="EpicTLETokenControl"></interceptor-ref> 
+            <interceptor-ref name="defaultStack"></interceptor-ref>
+            <result name="success">/pages/binManagement/refTerminalProfile.jsp</result>
+            <result name="Add">/pages/msgFrag.jsp</result>
+        </action>
+        <action name="AssignrefBPrf" class="com.epic.tle.binManagement.action.RefTerminalProfile" method="Assign">
+            <interceptor-ref name="EpicTLETokenControl"></interceptor-ref> 
+            <interceptor-ref name="defaultStack"></interceptor-ref>
+            <result name="success">/pages/binManagement/refTerminalProfile.jsp</result>
+            <result name="Assign">/pages/binManagement/popUpAssignBin.jsp</result>
+        </action>
+        <action name="LoadrefBPrf" class="com.epic.tle.binManagement.action.RefTerminalProfile" method="Load">
+            <interceptor-ref name="EpicTLETokenControl"></interceptor-ref> 
+            <interceptor-ref name="defaultStack"></interceptor-ref>
+            <result name="success">/pages/binManagement/refTerminalProfile.jsp</result>
+            <result name="load" type="json"></result>
+        </action>
+        <action name="DeleterefBPrf" class="com.epic.tle.binManagement.action.RefTerminalProfile" method="Delete">
+            <interceptor-ref name="EpicTLETokenControl"></interceptor-ref> 
+            <interceptor-ref name="defaultStack"></interceptor-ref>
+            <result name="success">/pages/binManagement/refTerminalProfile.jsp</result>
+            <result name="Delete" type="json"></result>            
+        </action>
+        <action name="updaterefBPrf" class="com.epic.tle.binManagement.action.RefTerminalProfile" method="update">
+            <interceptor-ref name="EpicTLETokenControl"></interceptor-ref> 
+            <interceptor-ref name="defaultStack"></interceptor-ref>
+            <result name="success">/pages/binManagement/refTerminalProfile.jsp</result>
+            <result name="update">/pages/msgFrag.jsp</result>
+        </action>
+<!--        <action name="*refBPrf" class="com.epic.tle.binManagement.action.RefTerminalProfile" method="{1}">
+            <result name="success">/pages/binManagement/refTerminalProfile.jsp</result>
+            <result name="list" type="json">/pages/binManagement/blockBinProfile.jsp</result>
+            <result name="Add">/pages/msgFrag.jsp</result>
+            <result name="Assign">/pages/binManagement/popUpAssignBin.jsp</result>
+            <result name="load" type="json"></result>
+            <result name="Delete" type="json"></result>
+            <result name="update">/pages/msgFrag.jsp</result>
+        </action>-->
+       
+        <action name="localBPrf" class="com.epic.tle.binManagement.action.LocalBin">
+            <result name="success">/pages/binManagement/localBin.jsp</result>
+        </action>
+        <action name="listlocalBPrf" class="com.epic.tle.binManagement.action.LocalBin" method="list">
+            <result name="success">/pages/binManagement/localBin.jsp</result>
+            <result name="list" type="json">/pages/binManagement/localBin.jsp</result>
+        </action>
+        <action name="listSystemBlocBPrf" class="com.epic.tle.binManagement.action.LocalBin" method="SystemBlockBinlist">
+            <result name="success">/pages/binManagement/localBin.jsp</result>
+            <result name="list" type="json">/pages/binManagement/localBin.jsp</result>
+        </action>
+        <action name="AddlocalBPrf" class="com.epic.tle.binManagement.action.LocalBin" method="Add">
+            <interceptor-ref name="EpicTLETokenControl"></interceptor-ref> 
+            <interceptor-ref name="defaultStack"></interceptor-ref>
+            <param name="binvalue">1</param>
+            <result name="success">/pages/binManagement/localBin.jsp</result>
+            <result name="Add">/pages/msgFrag.jsp</result>
+        </action>
+        <action name="AddSystemBloclBPrf" class="com.epic.tle.binManagement.action.LocalBin" method="AddSysBlockBin">
+            <interceptor-ref name="EpicTLETokenControl"></interceptor-ref> 
+            <interceptor-ref name="defaultStack"></interceptor-ref>
+            <param name="binvalue">2</param>        
+            <result name="success">/pages/binManagement/localBin.jsp</result>
+            <result name="Add">/pages/msgFrag.jsp</result>
+        </action>
+        <action name="DeletelocalBPrf" class="com.epic.tle.binManagement.action.LocalBin" method="Delete">
+            <interceptor-ref name="EpicTLETokenControl"></interceptor-ref> 
+            <interceptor-ref name="defaultStack"></interceptor-ref>
+            <result name="success">/pages/binManagement/localBin.jsp</result>
+            <result name="Delete" type="json"></result>
+        </action>
+<!--        <action name="*localBPrf" class="com.epic.tle.binManagement.action.LocalBin" method="{1}">
+            <result name="success">/pages/binManagement/localBin.jsp</result>
+            <result name="list" type="json">/pages/binManagement/localBin.jsp</result>
+            <result name="Add">/pages/msgFrag.jsp</result>
+            <result name="Delete" type="json"></result>
+        </action>-->
+    </package>
+        
+    <package name="HostManagement" extends="pglobal" namespace="/">
+        <action name="niiConf" class="com.epic.tle.host.action.NIIAction">
+            <result name="success">/pages/hostmanager/NIIConfig.jsp</result>
+            <result name="update">/pages/msgFrag.jsp</result>
+        </action>
+        
+        <action name="AddniiConf" class="com.epic.tle.host.action.NIIAction" method="Add">
+            <interceptor-ref name="EpicTLETokenControl"></interceptor-ref> 
+            <interceptor-ref name="defaultStack"></interceptor-ref>
+            <result name="success">/pages/hostmanager/NIIConfig.jsp</result>
+            <result name="Add">/pages/msgFrag.jsp</result>          
+        </action>
+        
+        
+        <action name="listniiConf" class="com.epic.tle.host.action.NIIAction" method="list">
+            <result name="success">/pages/hostmanager/NIIConfig.jsp</result>
+            <result name="list" type="json"></result>
+        </action>
+        
+        
+        <action name="AssignniiConf" class="com.epic.tle.host.action.NIIAction" method="Assign">
+            <interceptor-ref name="EpicTLETokenControl"></interceptor-ref> 
+            <interceptor-ref name="defaultStack"></interceptor-ref>
+            <result name="success">/pages/hostmanager/NIIConfig.jsp</result>
+            <result name="Assign">/pages/hostmanager/popUpNII.jsp</result>
+        </action>
+        
+        
+        <action name="LoadniiConf" class="com.epic.tle.host.action.NIIAction" method="Load">
+            <interceptor-ref name="EpicTLETokenControl"></interceptor-ref> 
+            <interceptor-ref name="defaultStack"></interceptor-ref>
+            <result name="success">/pages/hostmanager/NIIConfig.jsp</result>
+            <result name="load" type="json"></result>
+        </action>
+        
+        
+        <action name="LoadDropdownniiConf" class="com.epic.tle.host.action.NIIAction" method="LoadDropdown">
+            <interceptor-ref name="EpicTLETokenControl"></interceptor-ref> 
+            <interceptor-ref name="defaultStack"></interceptor-ref>
+            <result name="success">/pages/hostmanager/NIIConfig.jsp</result>
+            <result name="drop" type="json"></result>
+        </action>
+        
+        
+        <action name="DeleteniiConf" class="com.epic.tle.host.action.NIIAction" method="Delete">
+            <interceptor-ref name="EpicTLETokenControl"></interceptor-ref> 
+            <interceptor-ref name="defaultStack"></interceptor-ref>
+            <result name="success">/pages/hostmanager/NIIConfig.jsp</result>
+            <result name="Delete" type="json"></result>
+        </action>
+        
+        
+        <action name="UpdateniiConf" class="com.epic.tle.host.action.NIIAction" method="Update">
+            <interceptor-ref name="EpicTLETokenControl"></interceptor-ref> 
+            <interceptor-ref name="defaultStack"></interceptor-ref>
+            <result name="success">/pages/hostmanager/NIIConfig.jsp</result>
+            <result name="update">/pages/msgFrag.jsp</result>
+        </action>
+        
+<!--        
+        
+        
+        <action name="*niiConf" class="com.epic.tle.host.action.NIIAction" method="{1}">
+            <result name="success">/pages/hostmanager/NIIConfig.jsp</result>
+            <result name="Add">/pages/msgFrag.jsp</result>
+            <result name="list" type="json"></result>
+            <result name="Assign">/pages/hostmanager/popUpNII.jsp</result>
+            <result name="load" type="json"></result>
+            <result name="drop" type="json"></result>
+            <result name="Delete" type="json"></result>
+            <result name="update">/pages/msgFrag.jsp</result>
+        </action>-->
+        
+        <action name="*nii" class="com.epic.tle.host.action.NIIPopAction" method="{1}">
+            <result name="Add">/pages/msgFrag.jsp</result>
+            <result name="list" type="json">/pages/binManagement/popUpAssignBin.jsp</result>
+            <result name="Delete" type="json"></result>
+        </action>
+    </package>
+        
+    
+    
+    <package name ="OperationManager" extends="pglobal"   namespace="/">
+        <action name="oprMng" class="com.epic.tle.operationManagement.action.OperationManagment">
+            <result name="success">/pages/operationManagement/operationManage.jsp</result>
+        </action>
+        <action name="AddoprMng" method="Add" class="com.epic.tle.operationManagement.action.OperationManagment">
+            <interceptor-ref name="EpicTLETokenControl"></interceptor-ref> 
+            <interceptor-ref name="defaultStack"></interceptor-ref>
+            <result name="success">/pages/operationManagement/operationManage.jsp</result>
+            <result name="add" >/pages/msgFrag.jsp</result>
+        </action>
+        <action name="updateoprMng" method="update" class="com.epic.tle.operationManagement.action.OperationManagment">
+            <interceptor-ref name="EpicTLETokenControl"></interceptor-ref> 
+            <interceptor-ref name="defaultStack"></interceptor-ref>
+            <result name="success">/pages/operationManagement/operationManage.jsp</result>
+            <result name="update" >/pages/msgFrag.jsp</result> 
+        </action>
+        <action name="ListoprMng" method="List" class="com.epic.tle.operationManagement.action.OperationManagment">
+            <param name="isFromDashBoard">true</param>
+            <result name="success">/pages/operationManagement/operationManage.jsp</result>
+            <result name="list" type="json"></result>
+        </action>
+        <action name="ListoprMngement" method="List" class="com.epic.tle.operationManagement.action.OperationManagment">
+            <param name="isFromDashBoard">false</param>
+            <result name="success">/pages/operationManagement/operationManage.jsp</result>
+            <result name="list" type="json"></result>
+        </action>
+        <action name="findoprMng" method="find" class="com.epic.tle.operationManagement.action.OperationManagment">
+            <result name="success">/pages/operationManagement/operationManage.jsp</result>
+            <result name="find" type="json"></result>
+        </action>
+        <action name="deleteoprMng" method="delete" class="com.epic.tle.operationManagement.action.OperationManagment">
+            <interceptor-ref name="EpicTLETokenControl"></interceptor-ref> 
+            <interceptor-ref name="defaultStack"></interceptor-ref>
+            <result name="success">/pages/operationManagement/operationManage.jsp</result>
+            <result name="delete" type="json"></result>
+        </action>
+        <action name="getMessageoprMng" method="getMessage" class="com.epic.tle.operationManagement.action.OperationManagment">
+            <interceptor-ref name="EpicTLETokenControl"></interceptor-ref> 
+            <interceptor-ref name="defaultStack"></interceptor-ref>
+            <result name="success">/pages/operationManagement/operationManage.jsp</result>
+            <result name="message" type="json"></result>
+        </action>
+        <action name="DownloadoprMng" method="Download" class="com.epic.tle.operationManagement.action.OperationManagment">
+            <result name="success">/pages/operationManagement/operationManage.jsp</result>
+            <result name="PdfDownload" type="jasper">            
+                <param name="location">/resources/jReport/OperationTable.jasper</param>
+                <param name="dataSource">reportdatalist</param>
+                <param name="format">PDF</param>
+                <param name="contentDisposition">attachment;filename=OperationMng.pdf</param>
+            </result>
+        </action>
+        <!--        <action name="*oprMng" method="{1}" class="com.epic.tle.operationManagement.action.OperationManagment">
+            <result name="success">/pages/operationManagement/operationManage.jsp</result>
+            <result name="add" >/pages/msgFrag.jsp</result>
+            <result name="update" >/pages/msgFrag.jsp</result> 
+            <result name="list" type="json"></result>
+            <result name="find" type="json"></result>
+            <result name="update" >/pages/msgFrag.jsp</result> 
+            <result name="delete" type="json"></result>
+            <result name="message" type="json"></result>
+            <result name="PdfDownload" type="jasper">            
+                <param name="location">/resources/jReport/OperationTable.jasper</param>
+                <param name="dataSource">reportdatalist</param>
+                <param name="format">PDF</param>
+                <param name="contentDisposition">attachment;filename=OperationMng.pdf</param>
+            </result>
+        </action>-->
+        <!--        <action name="*HostListener" method="{1}" class="com.epic.tle.host.action.ListenerManage">
+            <result name="success">/pages/hostmanager/listnerManager.jsp</result>
+            <result name="add" >/pages/msgFrag.jsp</result>
+            <result name="update" >/pages/msgFrag.jsp</result> 
+            <result name="list" type="json"></result>
+            <result name="find" type="json"></result>
+            <result name="update" >/pages/msgFrag.jsp</result> 
+            <result name="delete" type="json"></result>
+        </action>-->
+    </package>
+</struts>
+
+
+
+                     
+        
+

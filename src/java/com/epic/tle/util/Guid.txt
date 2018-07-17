@@ -1,0 +1,8 @@
+================================
+Impotrance Guid Dont Remove
+================================
+
+Hibernate Query Edit
+1) EpicTleTerminal => removed @GeneratedValue(strategy=IDENTITY)
+2) EpicTleCardholders ==> @GeneratedValue(strategy=IDENTITY)
+3) 0000.00.00 date fixed ==> <property name="hibernate.connection.zeroDateTimeBehavior">convertToNull</property>

@@ -1,0 +1,283 @@
+// --------------------------------------------------
+// Application inner pages
+// --------------------------------------------------
+&.innerpage{
+	.breadcrumb{
+		font-family:arial;
+		font-size:0.8em;
+		color:$primary_master_light_silver11;
+	    width: 99%;
+	    float: left;
+	    margin: 8px 0px 4px 8px;
+	    text-transform:uppercase;
+
+	    i{
+	    	font-weight:bold;
+	    	padding:0 5px;
+	    }
+
+	    .active {
+	    	color:$primary_master_light_blue1;
+	    }
+	}
+
+	h1.page-title{
+		font-family:arial;
+		font-size:1.5em;
+		color:$primary_master_light_silver11;
+		font-weight:bold;
+	    width: 99%;
+	    float: left;
+	    margin: 8px 0px 4px 8px;
+	    font-weight: 100;
+
+	    .lnk-back {
+	    	@include transition(0.5s);
+	    	display:inline-block;
+	    	float:right;
+	    	border:1px solid $primary_master_light_silver5;
+	    	background:$primary_master_light_silver9;
+	    	padding:6px 10px;
+	    	text-transform:uppercase;
+	    	text-decoration:none;
+	    	font-size:0.55em;
+	    	font-weight:100;
+	    	color:$primary_master_light_silver6;
+	    	margin:2px;
+
+	    	i {
+	    		@include transition(0.3s);
+	    		padding:0px 2px 0px 0px;
+	    	}
+
+	    	&:hover {
+				color:$primary_master_light_blue;
+				border:1px solid $primary_master_light_blue;
+				i {
+	    			padding:0px 6px 0px 0px;
+	    		}
+			}
+	    }
+	}
+
+	.content-section{
+		width:99%;
+		/*min-height:150px;*/
+		margin:5px;
+		border:1px solid $primary_master_light_silver2;
+		background:$primary_master_light_silver10;
+		display:block;
+		float:left;
+		padding: 0px 0px 10px 0px;
+
+		.content-data {
+			width:98%;
+			margin:10px;
+
+			.section-title {
+				width:100%;
+				margin:0px 0px 25px 0px;
+				color:$primary_master_light_silver8;
+				font-size:0.85em;
+				text-transform:uppercase;
+				float:left;	
+				font-weight:100;
+				font-family:arial;
+			}
+
+			.msg-panel {
+				width:100%;
+				margin:0px 0px 5px 0px;
+				font-family:arial;
+				font-size:0.8em;
+				float:left;
+				display:none;
+
+				&.errormsg{
+					background:$form_error_red;
+					color:$primary_master_light_silver16;
+
+					i{
+						color:$form_error_icon;
+						font-weight:bold;
+						padding:2px 5px;
+						font-size:1.3em;
+					}
+				}
+
+				&.successmsg{
+					background:$form_success_green;
+					color:$primary_master_light_silver16;
+
+					i{
+						color:$form_success_icon;
+						font-weight:bold;
+						padding:2px 5px;
+						font-size:1.3em;
+					}
+				}
+				label {
+					display:block;
+					float:left;
+					width:20%;
+				}
+
+				div{
+					display:block;
+					float:left;
+					width:75%;
+					margin:3px 0px;
+				}
+			}
+
+			.d-row {
+				width:100%;
+				margin:3px 0px;
+				float:left;
+
+				&.cpanel {
+					margin:8px 0px 3px 0px;
+				}
+
+				.left-col {
+					display:block;
+					float:left;
+					width:20%;
+					margin:0px 5px 0px 0px;
+				}
+
+				.right-col{
+					display:block;
+					float:left;
+					width:75%;
+				}
+
+				.col-1{
+					width:17%;
+					margin:0px 5px 0px 0px;
+					float:left;
+				}
+
+				.col-2{
+					width:30%;
+					margin:0px 5px 0px 0px;
+					float:left;
+				}
+
+				.col-3{
+					width:17%;
+					margin:0px 5px 0px 0px;
+					float:left;
+				}
+
+				.col-4{
+					width:30%;
+					margin:0;
+					float:left;
+					margin:0px 5px 0px 0px;
+				}
+
+				@media screen and (min-width: 1220px) {
+				    .col-1{
+						width:17%;
+						margin:0px 5px 0px 0px;
+						float:left;
+					}
+
+					.col-2{
+						width:23%;
+						margin:0px 5px 0px 0px;
+						float:left;
+					}
+
+					.col-3{
+						width:17%;
+						margin:0px 5px 0px 0px;
+						float:left;
+					}
+
+					.col-4{
+						width:23%;
+						margin:0;
+						float:left;
+						margin:0px 5px 0px 0px;
+					}
+
+					.col-2, .col-4{
+						input[type='text'], select {
+							width:70%;
+						}
+					}
+				}
+
+				@media screen and (max-width: 1200px) and (min-width: 980px) {
+				    .col-1{
+						width:20%;
+						margin:0px 5px 0px 0px;
+						float:left;
+					}
+
+					.col-2{
+						width:28%;
+						margin:0px 5px 0px 0px;
+						float:left;
+					}
+
+					.col-3{
+						width:20;
+						margin:0px 5px 0px 0px;
+						float:left;
+					}
+
+					.col-4{
+						width:28%;
+						margin:0;
+						float:left;
+						margin:0px 5px 0px 0px;
+					}	
+
+					.col-2, .col-4{
+						input[type='text'], select{
+							width:85%;
+						}	
+					}
+						   
+				}
+
+				&.four-col{
+					border-top:1px solid $primary_master_light_silver2;
+					padding: 5px 0px 0px 0px;
+				}
+
+				@import "darknight_forms.scss";
+			}
+		}
+
+		&.search-form {
+			.d-row {
+				.left-col {
+					display:block;
+					float:left;
+					width:auto;
+					min-width:120px;
+					margin:0px 5px 0px 0px;
+				}
+				.right-col{
+					display:block;
+					width:auto;
+
+					.btn {
+						height:25px;
+						margin:0px 4px 0px 10px;
+					}
+
+					.txt-input.width-35 {
+						width:175px;
+					}
+				}
+			}
+
+		}
+	}
+}
+/*End*/

@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="txnTable" pageWidth="842" pageHeight="595" orientation="Landscape" whenNoDataType="AllSectionsNoDetail" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="66519d71-4f27-4833-9a1d-c9b72e811f0c">
+	<property name="template.engine" value="tabular_template"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<property name="ireport.zoom" value="1.2396694214876043"/>
+	<property name="ireport.x" value="447"/>
+	<property name="ireport.y" value="144"/>
+	<style name="Title" fontName="Dialog" fontSize="50" isBold="true"/>
+	<style name="SubTitle" forecolor="#736343" fontName="Dialog" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="Dialog" fontSize="12" isBold="true"/>
+	<style name="Row" mode="Transparent">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style backcolor="#E6DAC3"/>
+		</conditionalStyle>
+	</style>
+	<style name="Table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+			<topPen lineWidth="1.0" lineColor="#000000"/>
+			<leftPen lineWidth="1.0" lineColor="#000000"/>
+			<bottomPen lineWidth="1.0" lineColor="#000000"/>
+			<rightPen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table 1_TH" mode="Opaque" backcolor="#CCCC8F">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table 1_CH" mode="Opaque" backcolor="#E6E6CF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table 1_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<subDataset name="tableDataset" uuid="197f6a9b-9d35-4d0e-895e-5e5031129632">
+		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+		<queryString>
+			<![CDATA[]]>
+		</queryString>
+	</subDataset>
+	<subDataset name="txnDataSet" uuid="32849fc7-7d1b-4b31-9ad5-0b6917eff064">
+		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+		<queryString>
+			<![CDATA[]]>
+		</queryString>
+	</subDataset>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="STATUS" class="java.lang.String"/>
+	<field name="OPERATION" class="java.lang.String"/>
+	<field name="IP" class="java.lang.String"/>
+	<field name="MESSAGE" class="java.lang.String"/>
+	<field name="DATETIME" class="java.lang.String"/>
+	<field name="USERNAME" class="java.lang.String"/>
+	<title>
+		<band height="208" splitType="Stretch">
+			<staticText>
+				<reportElement style="Title" x="120" y="62" width="606" height="62" uuid="a080d2ca-6207-4d8e-87c9-d3b61fb495a9"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Dialog" size="32"/>
+				</textElement>
+				<text><![CDATA[Operation Report]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Title" x="-83" y="-110" width="802" height="62" uuid="2ed0304b-326b-4d78-8ac0-90f4220517c7"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="32"/>
+				</textElement>
+				<text><![CDATA[Batch Report-Automatic Bill Settlement]]></text>
+			</staticText>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="51">
+			<frame>
+				<reportElement mode="Opaque" x="0" y="0" width="802" height="50" forecolor="#000000" backcolor="#006EB9" uuid="de7cf2c2-2537-4c18-aae5-4cd145161161"/>
+				<staticText>
+					<reportElement style="Table" x="2" y="0" width="156" height="50" uuid="83e83d76-1dd6-436e-83dd-b1c157766352"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Dialog" size="9"/>
+					</textElement>
+					<text><![CDATA[Operation]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Table" x="671" y="1" width="131" height="49" uuid="444a8dfe-4246-4af4-a1db-5d298d478567"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Dialog" size="9"/>
+					</textElement>
+					<text><![CDATA[Date / Time]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Table" x="568" y="0" width="103" height="50" uuid="e5f4a961-d2c0-4187-9417-b0b14c932e2b"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Dialog" size="9"/>
+					</textElement>
+					<text><![CDATA[Status]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Table" x="250" y="0" width="223" height="50" uuid="759aa0fc-d7cf-4697-a79f-f4c66caa691f"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Dialog" size="9"/>
+					</textElement>
+					<text><![CDATA[Message]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Table" x="158" y="1" width="92" height="49" uuid="12e56513-3a9d-455a-8cae-5a6680d0b8e6"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Dialog" size="9"/>
+					</textElement>
+					<text><![CDATA[IP]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Table" x="473" y="0" width="95" height="50" uuid="a40caf03-dba5-4ef1-baba-7b07457e3fe0"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Dialog" size="9"/>
+					</textElement>
+					<text><![CDATA[Username]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="26">
+			<frame>
+				<reportElement mode="Opaque" x="1" y="0" width="801" height="25" forecolor="#000000" backcolor="#FFFFFF" uuid="18258fcd-bf14-40cf-bc55-e3cecfb0fcd0"/>
+				<textField>
+					<reportElement style="Table" x="1" y="0" width="156" height="25" uuid="0cc52248-03a0-443b-92a0-83f6376d9c31"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Dialog"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{OPERATION}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Table" x="670" y="0" width="131" height="25" uuid="fb0e1960-9b3e-438f-99fe-6f9588632a9a"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Dialog"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{DATETIME}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Table" x="567" y="0" width="103" height="25" uuid="aeb9bcae-17e5-47bc-bfd5-148f14c94943"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Dialog"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{STATUS}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Table" x="157" y="0" width="92" height="25" uuid="f6e0b526-a6e0-4947-9f76-86313a572e71"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Dialog"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{IP}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Table" x="249" y="0" width="223" height="25" uuid="a77d42a3-dea5-4e23-9844-0d305ee8af2b"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Dialog"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{MESSAGE}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Table" x="472" y="0" width="95" height="25" uuid="24c38e08-c8df-4e37-9951-572a230b2c47"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Dialog"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{USERNAME}]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="127"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="25" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="1" y="1" width="801" height="24" forecolor="#D0B48E" backcolor="#006EB9" uuid="f2324113-3563-4f48-b688-ed82b3098434"/>
+			</frame>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="19" splitType="Stretch">
+			<property name="local_mesure_unitheight" value="pixel"/>
+		</band>
+	</summary>
+</jasperReport>

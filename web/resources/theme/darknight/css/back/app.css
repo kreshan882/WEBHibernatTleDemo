@@ -1,0 +1,921 @@
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+body {
+  line-height: 1;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+blockquote, q {
+  quotes: none;
+}
+
+blockquote:before, blockquote:after {
+  content: '';
+  content: none;
+}
+
+q:before, q:after {
+  content: '';
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+html {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+html body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+html body .hide-element {
+  display: none !important;
+}
+html body .show-element {
+  display: block !important;
+}
+html body input[type='text'], html body select, html body textarea {
+  -ms-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  -webkit-box-sizing: content-box;
+  box-sizing: content-box;
+}
+html body .text-right {
+  text-align: right !important;
+}
+
+/* Add custom fonts begin */
+@font-face {
+  font-family: GothamPro;
+  src: url(../assets/fonts/GothamPro.ttf);
+}
+@font-face {
+  font-family: GothamProBold;
+  src: url(../assets/fonts/GothamPro-Bold.ttf);
+}
+@font-face {
+  font-family: GothamProMedium;
+  src: url(../assets/fonts/GothamPro-Medium.ttf);
+}
+@font-face {
+  font-family: HelveticaNeueRegular;
+  src: url(../assets/fonts/HelveticaNeue-Regular.ttf);
+}
+@font-face {
+  font-family: HelveticaNeueBold;
+  src: url(../assets/fonts/helvetica-neue-bold.ttf);
+}
+body {
+  margin: 0;
+  padding: 0;
+  background: #333333;
+}
+body header {
+  width: 100%;
+  position: fixed;
+  top: 0px;
+  height: 59px;
+  background: #373838;
+  border-bottom: 1px solid #535454;
+}
+body header .brand {
+  display: block;
+  width: 190px;
+  height: 59px;
+  background: url("../assets/images/logo_inner.png") transparent no-repeat top left;
+  float: left;
+  outline: none;
+}
+body header .top-nav {
+  width: 60%;
+  float: right;
+  margin: 2px 0 0 0;
+}
+body header .top-nav .user-info {
+  float: right;
+  margin: 10px 25px 0 0;
+}
+body header .top-nav .user-info h1 {
+  text-align: right;
+  color: #32a9c5;
+  font-size: 24pt;
+  font-weight: bold;
+  font-family: arial;
+  line-height: 24pt;
+  margin: auto;
+  display: block;
+  float: left;
+  padding-right: 10px;
+  border-right: 1px solid #4b4b4a;
+}
+body header .top-nav .user-info div {
+  margin: 2px 0px 0px 10px;
+  float: left;
+  color: #7e7e7e;
+  font-family: arial;
+  font-size: 0.8em;
+  line-height: 12pt;
+}
+body header .top-nav .user-info div a {
+  color: #bfbfbf;
+  font-weight: bold;
+  text-decoration: underline;
+}
+body header .top-nav .user-info div a:hover {
+  color: #32a9c5;
+  text-decoration: none;
+}
+body header .top-nav .right-links {
+  float: right;
+  margin: 6px 0 0 0;
+}
+body header .top-nav .right-links a {
+  display: block;
+  float: right;
+  width: 44px;
+  height: 44px;
+  background: url(../assets/images/icon_sprite.png) transparent no-repeat top left;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+body header .top-nav .right-links .lnk-home {
+  background-position: 0px -96px;
+  margin-right: 15px;
+}
+body header .top-nav .right-links .lnk-home:hover {
+  background-position: 0px -140px;
+}
+body header .top-nav .right-links .lnk-logout {
+  background-position: -45px -96px;
+  margin-right: 15px;
+}
+body header .top-nav .right-links .lnk-logout:hover {
+  background-position: -45px -140px;
+}
+body section.app-content {
+  width: 100%;
+  height: calc(100% - 83px);
+  position: fixed;
+  top: 60px;
+  overflow: hidden;
+}
+body section.app-content .left-nav {
+  width: 250px;
+  height: 100%;
+  background: url("../assets/images/sidenav_bg.png") #373838 no-repeat top left;
+  overflow: auto;
+  background-size: cover;
+  float: left;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+body section.app-content .left-nav .navigation {
+  display: block;
+  margin: 10px 5px;
+  padding: 0;
+  list-style: none;
+  font-family: arial;
+}
+body section.app-content .left-nav .navigation li {
+  margin: 3px 0px;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  padding: 6px 0 6px 0;
+  border-bottom: 1px solid #139cbc;
+}
+body section.app-content .left-nav .navigation li a {
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  padding: 5px 0px;
+  text-decoration: none;
+  color: #12b2d8;
+  display: inline-block;
+  display: block;
+  font-size: 0.85em;
+}
+body section.app-content .left-nav .navigation li a:hover {
+  background: #32a9c5;
+  color: #ffffff;
+}
+body section.app-content .left-nav .navigation li a:hover i {
+  padding: 0 2px 0 8px;
+}
+body section.app-content .left-nav .navigation li a i {
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  padding: 0px 5px;
+}
+body section.app-content .left-nav .navigation li .sub-nav {
+  margin: 0px;
+  list-style: none;
+  display: none;
+}
+body section.app-content .left-nav .navigation li .sub-nav li {
+  margin: 0px 0px 0px 25px;
+  padding: 0px;
+  list-style: none;
+  border-bottom: 1px dotted #32a9c5;
+}
+body section.app-content .left-nav .navigation li .sub-nav li:last-child {
+  border-style: none;
+}
+body section.app-content .left-nav .navigation li .sub-nav li .menuselect {
+  background: #32a9c5;
+  color: #ffffff;
+}
+body section.app-content .left-nav .navigation li .sub-nav li a {
+  display: block;
+  padding: 5px 0px 5px 0px;
+  font-weight: 100;
+  font-size: 0.7em;
+}
+body section.app-content .left-nav .navigation li .sub-nav li a:hover {
+  background: #32a9c5;
+  color: #ffffff;
+}
+body section.app-content .content {
+  width: calc(100% - 250px);
+  height: 100%;
+  float: left;
+  overflow-y: auto;
+  overflow-x: hidden;
+  /*End*/
+  /*End*/
+}
+body section.app-content .content.dashboard {
+  overflow: hidden;
+}
+body section.app-content .content.dashboard h1.page-title {
+  font-family: arial;
+  font-size: 1.5em;
+  color: #909090;
+  font-weight: bold;
+  width: 100%;
+  float: left;
+  margin: 8px 0px 4px 8px;
+  font-weight: 100;
+}
+body section.app-content .content.dashboard .d-col {
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+  width: calc(50% - 12px);
+  height: calc(50% - 34px);
+  margin: 6px;
+  float: left;
+}
+body section.app-content .content.dashboard .d-col .d-col-title {
+  width: 100%;
+  margin: 6px 0px;
+  color: #d7d7d7;
+  font-size: 0.7em;
+  text-transform: uppercase;
+  float: left;
+  font-weight: 100;
+  font-family: arial;
+}
+body section.app-content .content.dashboard .d-col .d-col-title div {
+  display: inline-block;
+  width: 20;
+  float: right;
+  text-align: right;
+  text-transform: capitalize;
+  position: relative;
+}
+body section.app-content .content.dashboard .d-col .d-col-title div a {
+  color: #d7d7d7;
+  text-decoration: none;
+}
+body section.app-content .content.dashboard .d-col .d-col-title div a:hover {
+  color: #32a9c5;
+}
+body section.app-content .content.dashboard .d-col .d-col-title div div.rangepopup {
+  display: none;
+  position: absolute;
+  z-index: 100;
+  right: -1px;
+  top: 18px;
+  min-height: 40px;
+  min-width: 250px;
+  background: #282828;
+  border: 1px solid #4b4b4a;
+  padding: 5px 10px;
+  box-shadow: -2px 2px 5px #4b4b4a;
+}
+body section.app-content .content.dashboard .d-col .d-col-title div div.rangepopup label {
+  display: block;
+  width: 15%;
+  margin: 6px;
+  float: left;
+}
+body section.app-content .content.dashboard .d-col .d-col-title div div.rangepopup input[type='text'] {
+  width: 55%;
+  padding: 5px 10px;
+  margin: 3px 6px;
+  display: block;
+  float: left;
+  outline: none;
+  border: 1px solid #626262;
+  background: #3a3a3a;
+  color: #ffffff;
+  font-family: arial;
+  font-size: 0.9em;
+}
+body section.app-content .content.dashboard .d-col .d-col-title div div.rangepopup .error-msg {
+  width: 100%;
+  float: left;
+  margin: 5px 0px;
+  color: #d9534f;
+  text-align: left;
+}
+body section.app-content .content.dashboard .d-col .d-col-title div div.rangepopup button {
+  font-family: arial;
+  font-size: 0.9em;
+  border: 1px solid #12b2d8;
+  padding: 5px 10px;
+  background: #12b2d8;
+  color: #ffffff;
+  float: left;
+  margin: 6px;
+  text-transform: uppercase;
+  outline: none;
+  /*&:focus{
+  	background:$primary_master_light_silver4;
+  	border:1px solid $primary_master_light_silver5;
+  	margin:7px 5px 5px 7px;
+  }*/
+}
+body section.app-content .content.dashboard .d-col .d-col-title div div.rangepopup button:hover {
+  color: #12b2d8;
+  background: #3a3a3a;
+}
+body section.app-content .content.dashboard .d-col .d-col-widget {
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  border: 1px solid #626262;
+  background: #3a3a3a;
+  width: 100%;
+  height: calc(100% - 20px);
+  float: left;
+  position: relative;
+}
+body section.app-content .content.dashboard .d-col .d-col-widget a.maxmin {
+  display: inline-block;
+  font-family: arial;
+  font-size: 0.9em;
+  color: #ffffff;
+  position: absolute;
+  right: 2px;
+  top: 3px;
+  border: 1px solid #626262;
+  padding: 4px;
+  border-radius: 3px;
+  text-decoration: none;
+  background: #3a3a3a;
+}
+body section.app-content .content.dashboard .d-col .d-col-widget a.maxmin:hover {
+  color: #12b2d8;
+  background: #60605f;
+}
+body section.app-content .content.innerpage .breadcrumb {
+  font-family: arial;
+  font-size: 0.8em;
+  color: #909090;
+  width: 99%;
+  float: left;
+  margin: 8px 0px 4px 8px;
+  text-transform: uppercase;
+}
+body section.app-content .content.innerpage .breadcrumb i {
+  font-weight: bold;
+  padding: 0 5px;
+}
+body section.app-content .content.innerpage .breadcrumb .active {
+  color: #12b2d8;
+}
+body section.app-content .content.innerpage h1.page-title {
+  font-family: arial;
+  font-size: 1.5em;
+  color: #909090;
+  font-weight: bold;
+  width: 99%;
+  float: left;
+  margin: 8px 0px 4px 8px;
+  font-weight: 100;
+}
+body section.app-content .content.innerpage h1.page-title .lnk-back {
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+  display: inline-block;
+  float: right;
+  border: 1px solid #60605f;
+  background: #333333;
+  padding: 6px 10px;
+  text-transform: uppercase;
+  text-decoration: none;
+  font-size: 0.55em;
+  font-weight: 100;
+  color: #d9d9d9;
+  margin: 2px;
+}
+body section.app-content .content.innerpage h1.page-title .lnk-back i {
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  padding: 0px 2px 0px 0px;
+}
+body section.app-content .content.innerpage h1.page-title .lnk-back:hover {
+  color: #32a9c5;
+  border: 1px solid #32a9c5;
+}
+body section.app-content .content.innerpage h1.page-title .lnk-back:hover i {
+  padding: 0px 6px 0px 0px;
+}
+body section.app-content .content.innerpage .content-section {
+  width: 99%;
+  /*min-height:150px;*/
+  margin: 5px;
+  border: 1px solid #626262;
+  background: #3a3a3a;
+  display: block;
+  float: left;
+  padding: 0px 0px 10px 0px;
+}
+body section.app-content .content.innerpage .content-section .custom-grid {
+  margin: 0px 5px;
+  /*.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {
+      border: 1px solid #666666;
+      background: #a9a9a9 url(images/ui-bg_glass_60_e9e9e9_1x400.png) 50% 50% repeat-x;
+      font-weight: bold;
+      font-size: 13px;
+      color: #333;
+      font-family: Arial;
+  }*/
+}
+body section.app-content .content.innerpage .content-section .custom-grid i.active {
+  color: #16a00c;
+}
+body section.app-content .content.innerpage .content-section .custom-grid i.critical {
+  color: #d90000;
+}
+body section.app-content .content.innerpage .content-section .custom-grid i.concern {
+  color: #dcde1c;
+}
+body section.app-content .content.innerpage .content-section .custom-grid i.warning {
+  color: #d99900;
+}
+body section.app-content .content.innerpage .content-section .custom-grid i.normal {
+  color: #c8c8c8;
+}
+body section.app-content .content.innerpage .content-section .custom-grid .ui-widget-header {
+  /*border-style:none;
+  background:url(../assets/images/icon_sprite.png) #dfdfdf repeat-x 0 -275px;
+  font-family: arial;
+  font-size:9pt;
+  color:#545454;
+  border:1px solid #d3d3d3;*/
+  display: none;
+}
+body section.app-content .content.innerpage .content-section .custom-grid .ui-widget-header .dataTables_length select {
+  width: auto;
+}
+body section.app-content .content.innerpage .content-section .custom-grid .ui-widget-header .dataTables_filter select {
+  width: 150px;
+}
+body section.app-content .content.innerpage .content-section .custom-grid .ui-widget-content {
+  border: 1px solid #616161;
+  background-image: none;
+  background-color: transparent;
+  color: #d4d4d4;
+  border-style: none;
+}
+body section.app-content .content.innerpage .content-section .custom-grid td.jqgrid-rownum {
+  color: #d4d4d4;
+  border-left: 1px solid #616161;
+  vertical-align: middle;
+}
+body section.app-content .content.innerpage .content-section .custom-grid tr.jqgrow td {
+  vertical-align: middle;
+}
+body section.app-content .content.innerpage .content-section .custom-grid .ui-state-highlight a, body section.app-content .content.innerpage .content-section .custom-grid .ui-widget-content .ui-state-highlight a, body section.app-content .content.innerpage .content-section .custom-grid td.action-col a {
+  color: #d4d4d4;
+  font-size: 1.2em;
+  margin: 0px 3px;
+}
+body section.app-content .content.innerpage .content-section .custom-grid .ui-state-highlight a:hover, body section.app-content .content.innerpage .content-section .custom-grid .ui-widget-content .ui-state-highlight a:hover, body section.app-content .content.innerpage .content-section .custom-grid td.action-col a:hover {
+  color: #32a9c5;
+}
+body section.app-content .content.innerpage .content-section .custom-grid .ui-state-default th.thAction .ui-icon, body section.app-content .content.innerpage .content-section .custom-grid th.no_sorting .ui-icon {
+  display: none;
+}
+body section.app-content .content.innerpage .content-section .custom-grid .ui-jqgrid-pager {
+  background: #616161;
+  border: 0px;
+  color: #fff;
+}
+body section.app-content .content.innerpage .content-section .custom-grid .ui-jqgrid-pager .ui-pg-table td {
+  color: #fff;
+}
+body section.app-content .content.innerpage .content-section .custom-grid .ui-paging-info {
+  margin-top: 6px;
+}
+body section.app-content .content.innerpage .content-section .custom-grid tr.ui-state-highlight {
+  background: #32a9c5;
+}
+body section.app-content .content.innerpage .content-section .custom-grid tr.ui-state-highlight .action-col a:hover {
+  color: #000000;
+}
+body section.app-content .content.innerpage .content-section .custom-grid .ui-jqgrid-hbox {
+  overflow: hidden;
+}
+body section.app-content .content.innerpage .content-section .custom-grid .dataTables_scrollHead .ui-state-default, body section.app-content .content.innerpage .content-section .custom-grid thead th.ui-state-default {
+  background: url(../assets/images/icon_sprite.png) #717171 repeat-x 0 -192px;
+  font-weight: bold;
+  color: #fff;
+  font-size: 9pt;
+  font-family: arial;
+  height: 15px;
+  vertical-align: middle;
+  padding: 8px 4px 0px 0px;
+  font-weight: 200;
+}
+body section.app-content .content.innerpage .content-section .custom-grid table tr.odd td, body section.app-content .content.innerpage .content-section .custom-grid table tr.odd td.sorting_1 {
+  background-color: #fbfbfb;
+  color: #3f3f3f;
+  font-size: 8pt;
+  font-family: arial;
+  vertical-align: middle;
+  padding-top: 2px;
+}
+body section.app-content .content.innerpage .content-section .custom-grid table tr.even td, body section.app-content .content.innerpage .content-section .custom-grid table tr.even td.sorting_1 {
+  background-color: #f9e5e6;
+  color: #3f3f3f;
+  font-size: 8pt;
+  font-family: arial;
+  vertical-align: middle;
+  padding-top: 2px;
+}
+body section.app-content .content.innerpage .content-section .custom-grid table tr.odd:hover td, body section.app-content .content.innerpage .content-section .custom-grid table tr.even:hover td {
+  background-color: #ebebeb;
+  color: #222;
+}
+body section.app-content .content.innerpage .content-section .custom-grid table tr td.no_action_col {
+  padding: 4px 10px 4px 10px;
+}
+body section.app-content .content.innerpage .content-section .custom-grid .ui-widget-header .dataTables_paginate .ui-state-default {
+  background: none;
+  border-style: none;
+}
+body section.app-content .content.innerpage .content-section .custom-grid .dataTables_paginate span.ui-button {
+  color: #545454;
+  text-decoration: underline !important;
+  font-family: arial;
+  font-size: 9pt;
+}
+body section.app-content .content.innerpage .content-section .custom-grid .dataTables_paginate .ui-button:hover {
+  color: #d02b31;
+  text-decoration: none !important;
+}
+body section.app-content .content.innerpage .content-section .custom-grid .dataTables_paginate .ui-state-disabled:hover {
+  color: #545454;
+}
+body section.app-content .content.innerpage .content-section .custom-grid table tr.odd td.dataTables_empty {
+  font-size: 10pt;
+  padding: 10px;
+  color: #999;
+}
+body section.app-content .content.innerpage .content-section .custom-grid tbody .ui-state-default, body section.app-content .content.innerpage .content-section .custom-grid tbody .ui-widget-content .ui-state-default {
+  background-image: none;
+  background-color: transparent;
+}
+body section.app-content .content.innerpage .content-section .content-data {
+  width: 98%;
+  margin: 10px;
+}
+body section.app-content .content.innerpage .content-section .content-data .section-title {
+  width: 100%;
+  margin: 0px 0px 25px 0px;
+  color: #d7d7d7;
+  font-size: 0.85em;
+  text-transform: uppercase;
+  float: left;
+  font-weight: 100;
+  font-family: arial;
+}
+body section.app-content .content.innerpage .content-section .content-data .msg-panel {
+  width: 100%;
+  margin: 0px 0px 5px 0px;
+  font-family: arial;
+  font-size: 0.8em;
+  float: left;
+  display: none;
+}
+body section.app-content .content.innerpage .content-section .content-data .msg-panel.errormsg {
+  background: #753836;
+  color: #e3e2e2;
+}
+body section.app-content .content.innerpage .content-section .content-data .msg-panel.errormsg i {
+  color: #a95956;
+  font-weight: bold;
+  padding: 2px 5px;
+  font-size: 1.3em;
+}
+body section.app-content .content.innerpage .content-section .content-data .msg-panel.successmsg {
+  background: #43643a;
+  color: #e3e2e2;
+}
+body section.app-content .content.innerpage .content-section .content-data .msg-panel.successmsg i {
+  color: #4cc42c;
+  font-weight: bold;
+  padding: 2px 5px;
+  font-size: 1.3em;
+}
+body section.app-content .content.innerpage .content-section .content-data .msg-panel label {
+  display: block;
+  float: left;
+  width: 20%;
+}
+body section.app-content .content.innerpage .content-section .content-data .msg-panel div {
+  display: block;
+  float: left;
+  width: 75%;
+  margin: 3px 0px;
+}
+body section.app-content .content.innerpage .content-section .content-data .d-row {
+  width: 100%;
+  margin: 3px 0px;
+  float: left;
+}
+body section.app-content .content.innerpage .content-section .content-data .d-row.cpanel {
+  margin: 8px 0px 3px 0px;
+}
+body section.app-content .content.innerpage .content-section .content-data .d-row .left-col {
+  display: block;
+  float: left;
+  width: 20%;
+  margin: 0px 5px 0px 0px;
+}
+body section.app-content .content.innerpage .content-section .content-data .d-row .right-col {
+  display: block;
+  float: left;
+  width: 75%;
+}
+body section.app-content .content.innerpage .content-section .content-data .d-row .col-1 {
+  width: 17%;
+  margin: 0px 5px 0px 0px;
+  float: left;
+}
+body section.app-content .content.innerpage .content-section .content-data .d-row .col-2 {
+  width: 30%;
+  margin: 0px 5px 0px 0px;
+  float: left;
+}
+body section.app-content .content.innerpage .content-section .content-data .d-row .col-3 {
+  width: 17%;
+  margin: 0px 5px 0px 0px;
+  float: left;
+}
+body section.app-content .content.innerpage .content-section .content-data .d-row .col-4 {
+  width: 30%;
+  margin: 0;
+  float: left;
+  margin: 0px 5px 0px 0px;
+}
+@media screen and (min-width: 1220px) {
+  body section.app-content .content.innerpage .content-section .content-data .d-row .col-1 {
+    width: 17%;
+    margin: 0px 5px 0px 0px;
+    float: left;
+  }
+  body section.app-content .content.innerpage .content-section .content-data .d-row .col-2 {
+    width: 23%;
+    margin: 0px 5px 0px 0px;
+    float: left;
+  }
+  body section.app-content .content.innerpage .content-section .content-data .d-row .col-3 {
+    width: 17%;
+    margin: 0px 5px 0px 0px;
+    float: left;
+  }
+  body section.app-content .content.innerpage .content-section .content-data .d-row .col-4 {
+    width: 23%;
+    margin: 0;
+    float: left;
+    margin: 0px 5px 0px 0px;
+  }
+  body section.app-content .content.innerpage .content-section .content-data .d-row .col-2 input[type='text'], body section.app-content .content.innerpage .content-section .content-data .d-row .col-2 select, body section.app-content .content.innerpage .content-section .content-data .d-row .col-4 input[type='text'], body section.app-content .content.innerpage .content-section .content-data .d-row .col-4 select {
+    width: 70%;
+  }
+}
+@media screen and (max-width: 1200px) and (min-width: 980px) {
+  body section.app-content .content.innerpage .content-section .content-data .d-row .col-1 {
+    width: 20%;
+    margin: 0px 5px 0px 0px;
+    float: left;
+  }
+  body section.app-content .content.innerpage .content-section .content-data .d-row .col-2 {
+    width: 28%;
+    margin: 0px 5px 0px 0px;
+    float: left;
+  }
+  body section.app-content .content.innerpage .content-section .content-data .d-row .col-3 {
+    width: 20;
+    margin: 0px 5px 0px 0px;
+    float: left;
+  }
+  body section.app-content .content.innerpage .content-section .content-data .d-row .col-4 {
+    width: 28%;
+    margin: 0;
+    float: left;
+    margin: 0px 5px 0px 0px;
+  }
+  body section.app-content .content.innerpage .content-section .content-data .d-row .col-2 input[type='text'], body section.app-content .content.innerpage .content-section .content-data .d-row .col-2 select, body section.app-content .content.innerpage .content-section .content-data .d-row .col-4 input[type='text'], body section.app-content .content.innerpage .content-section .content-data .d-row .col-4 select {
+    width: 85%;
+  }
+}
+body section.app-content .content.innerpage .content-section .content-data .d-row.four-col {
+  border-top: 1px solid #626262;
+  padding: 5px 0px 0px 0px;
+}
+body section.app-content .content.innerpage .content-section .content-data .d-row .form-label {
+  font-family: arial;
+  font-size: 0.8em;
+  color: #d7d7d7;
+  text-align: left;
+}
+body section.app-content .content.innerpage .content-section .content-data .d-row .required {
+  font-family: arial;
+  font-size: 1em;
+  color: #ff0101;
+  font-weight: bold;
+}
+body section.app-content .content.innerpage .content-section .content-data .d-row .txt-input, body section.app-content .content.innerpage .content-section .content-data .d-row .ddl-input {
+  padding: 4px 10px;
+  display: block;
+  float: left;
+  outline: none;
+  border: 1px solid #626262;
+  background: #4b4b4a;
+  color: #ffffff;
+  font-family: arial;
+  font-size: 0.8em;
+  opacity: 1;
+}
+body section.app-content .content.innerpage .content-section .content-data .d-row .txt-input:disabled, body section.app-content .content.innerpage .content-section .content-data .d-row .ddl-input:disabled {
+  opacity: 0.5;
+}
+body section.app-content .content.innerpage .content-section .content-data .d-row .btn {
+  padding: 4px 10px;
+  font-family: arial;
+  font-size: 0.8em;
+  color: #ffffff;
+  text-transform: uppercase;
+  outline: none;
+  margin: 0px 4px 0px 0px;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+  border-radius: 0;
+}
+body section.app-content .content.innerpage .content-section .content-data .d-row .btn.default-button {
+  background: #12b2d8;
+  border: 1px solid #005265;
+}
+body section.app-content .content.innerpage .content-section .content-data .d-row .btn.default-button:hover, body section.app-content .content.innerpage .content-section .content-data .d-row .btn.default-button:focus {
+  color: #ffffff;
+  background: #3a3a3a;
+  border: 1px solid #12b2d8;
+}
+body section.app-content .content.innerpage .content-section .content-data .d-row .btn.reset-button {
+  background: #acacac;
+  border: 1px solid #626262;
+}
+body section.app-content .content.innerpage .content-section .content-data .d-row .btn.reset-button:hover, body section.app-content .content.innerpage .content-section .content-data .d-row .btn.reset-button:focus {
+  color: #ffffff;
+  background: #3a3a3a;
+  border: 1px solid #626262;
+}
+body section.app-content .content.innerpage .content-section .content-data .d-row .btn span.ui-button-text {
+  padding: 2px;
+  display: inline-block;
+}
+body section.app-content .content.innerpage .content-section .content-data .d-row .btn i {
+  margin-top: -1px;
+}
+body section.app-content .content.innerpage .content-section .content-data .d-row .btn-wrap {
+  position: relative;
+  display: inline-block;
+}
+body section.app-content .content.innerpage .content-section .content-data .d-row .btn-wrap i {
+  position: absolute;
+  z-index: 1;
+  color: #fff;
+  left: 6px;
+  top: 4px;
+}
+body section.app-content .content.innerpage .content-section .content-data .d-row .btn-wrap .btn {
+  padding: 4px 10px 4px 25px;
+}
+body section.app-content .content.innerpage .content-section .content-data .d-row .btn-wrap.lnk-match .btn {
+  height: 28px;
+  margin-top: 1px;
+}
+body section.app-content .content.innerpage .content-section .content-data .d-row .btn-wrap.lnk-match i {
+  margin-top: 2px;
+}
+body section.app-content .content.innerpage .content-section .content-data .d-row .inline-fields {
+  font-family: arial;
+  font-size: 0.8em;
+  color: #d7d7d7;
+  text-align: left;
+  display: inline-block;
+  float: left;
+  padding: 4px;
+}
+body section.app-content .content.innerpage .content-section .content-data .d-row .width-35 {
+  width: 35%;
+}
+body section.app-content .content.innerpage .content-section .content-data .d-row .width-39 {
+  width: 39%;
+}
+body section.app-content .content.innerpage .content-section.search-form .d-row .left-col {
+  display: block;
+  float: left;
+  width: auto;
+  min-width: 120px;
+  margin: 0px 5px 0px 0px;
+}
+body section.app-content .content.innerpage .content-section.search-form .d-row .right-col {
+  display: block;
+  width: auto;
+}
+body section.app-content .content.innerpage .content-section.search-form .d-row .right-col .btn {
+  height: 17px;
+  margin: -1px 4px 0px 10px;
+  border-radius: 0;
+}
+body section.app-content .content.innerpage .content-section.search-form .d-row .right-col .txt-input.width-35 {
+  width: 175px;
+}
+body footer {
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  text-align: center;
+  padding: 7px 0px;
+  background: #3a3a3a;
+  font-family: arial;
+  font-size: 0.7em;
+  color: #909090;
+}
+body footer a {
+  color: #909090;
+  font-family: arial;
+  text-decoration: underline;
+}
+body footer a:hover {
+  color: #ffffff;
+  text-decoration: none;
+}
+body .ui-datepicker {
+  font-family: arial;
+  font-size: 0.8em;
+  color: #fff;
+}
+body .ui-datepicker.ui-widget.ui-widget-content {
+  border-radius: 0;
+  background: #222;
+  border: 1px solid #626262;
+}
+body .ui-datepicker .ui-datepicker-title {
+  font-family: arial;
+  font-size: 0.8em;
+}
+body .ui-datepicker thead th {
+  color: #fff;
+  font-size: 0.8em;
+}
+
+/*# sourceMappingURL=app.css.map */

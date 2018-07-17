@@ -1,0 +1,112 @@
+// --------------------------------------------------
+// Common styles
+// --------------------------------------------------
+
+html {
+	width:100%;
+	height:100%;
+	margin:0;
+	padding:0;
+	overflow:hidden;
+
+	body {
+		width:100%;
+		height:100%;
+		margin:0;
+		padding:0;
+		overflow:hidden;
+
+		.hide-element{
+			display:none !important;
+		}
+
+		.show-element{
+			display:block !important;
+		}
+
+		input[type='text'], select, textarea{
+			-ms-box-sizing:content-box;
+			-moz-box-sizing:content-box;
+			-webkit-box-sizing:content-box; 
+			box-sizing:content-box;
+		}
+
+		.text-right{
+			text-align:right !important;
+		}
+	}
+}
+//End
+
+
+
+
+// --------------------------------------------------
+// Fonts
+// --------------------------------------------------
+
+	/* Add custom fonts begin */
+	@font-face {
+		font-family: GothamPro;
+		src: url(../assets/fonts/GothamPro.ttf);
+	}
+	@font-face {
+		font-family: GothamProBold;
+		src: url(../assets/fonts/GothamPro-Bold.ttf);
+	}
+	@font-face {
+		font-family: GothamProMedium;
+		src: url(../assets/fonts/GothamPro-Medium.ttf);
+	}
+	@font-face {
+		font-family: HelveticaNeueRegular;
+		src: url(../assets/fonts/HelveticaNeue-Regular.ttf);
+	}
+	@font-face {
+		font-family: HelveticaNeueBold;
+		src: url(../assets/fonts/helvetica-neue-bold.ttf);
+	}
+//End 
+
+
+
+// --------------------------------------------------
+// Common images
+// --------------------------------------------------
+$iconsprite : url(../assets/images/icon_sprite.png);
+
+
+
+
+
+// --------------------------------------------------
+// Transition mixin
+// --------------------------------------------------
+@mixin transition($duration) {
+    -webkit-transition: all $duration; 
+    transition: all $duration;
+}
+
+
+
+
+// --------------------------------------------------
+// Box shadow mixin
+// --------------------------------------------------
+@mixin shadow($type, $l,$t,$r,$b,$color) {
+	-moz-box-shadow:    $type $l $t $r $b $color;
+	-webkit-box-shadow: $type $l $t $r $b $color;
+	box-shadow:         $type $l $t $r $b $color;
+}
+
+
+
+// --------------------------------------------------
+// Background mixin
+// --------------------------------------------------
+@mixin setbackground() {
+	background:url('../assets/images/bg_login.png') $white no-repeat top left;
+	background-size:cover;
+}
+
+

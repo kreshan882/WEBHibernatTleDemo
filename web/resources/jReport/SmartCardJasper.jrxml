@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="SmartCardJasper" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="30" rightMargin="30" topMargin="20" bottomMargin="20" uuid="e3d9aeac-e136-47bf-9b87-f61868da87a4">
+	<property name="ireport.scriptlethandling" value="0"/>
+	<property name="ireport.encoding" value="UTF-8"/>
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<import value="net.sf.jasperreports.engine.*"/>
+	<import value="java.util.*"/>
+	<import value="net.sf.jasperreports.engine.data.*"/>
+	<parameter name="bankname" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="merchantname" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="cardSerialNo" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="issuedDate" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="userPin" class="java.lang.String" isForPrompting="false"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="32" splitType="Stretch">
+			<elementGroup>
+				<line>
+					<reportElement key="line-1" x="0" y="3" width="535" height="1" uuid="5ff26885-e20f-4f85-b945-9cdacd2abfa1"/>
+				</line>
+				<line>
+					<reportElement key="line-2" x="0" y="31" width="535" height="1" uuid="c5542f66-4154-4921-ac06-5190967a0afd"/>
+				</line>
+				<rectangle>
+					<reportElement key="rectangle-1" x="0" y="5" width="535" height="25" backcolor="#999999" uuid="1a86355e-3f50-4c65-aae9-fc96212ef2b8"/>
+				</rectangle>
+				<staticText>
+					<reportElement key="staticText-1" x="99" y="8" width="336" height="20" uuid="4573efa6-cab9-46a5-b48b-84c6d03f37fa"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Dialog" size="12" isBold="true" pdfFontName="Courier-Bold" isPdfEmbedded="true"/>
+					</textElement>
+					<text><![CDATA[Mailing smart card PINs for field officers  
+]]></text>
+				</staticText>
+			</elementGroup>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="39" splitType="Stretch">
+			<line>
+				<reportElement key="line-3" x="0" y="3" width="535" height="1" uuid="148885c0-3fa4-4625-916d-0cec6cf173bc"/>
+			</line>
+			<line>
+				<reportElement key="line-4" x="0" y="38" width="535" height="1" uuid="236b3ea4-3489-46b7-8978-032f6ef6454a"/>
+			</line>
+			<rectangle>
+				<reportElement key="rectangle-2" x="0" y="6" width="535" height="30" backcolor="#CCCCCC" uuid="cc7fb89f-9829-4727-98be-bfbd498a3e3c"/>
+			</rectangle>
+			<staticText>
+				<reportElement key="staticText-2" x="7" y="9" width="513" height="22" uuid="a26be158-aa74-4199-b27c-08bf25c3a29d"/>
+				<textElement textAlignment="Left" verticalAlignment="Bottom">
+					<font fontName="Dialog" size="10" isBold="true" pdfFontName="Courier-Bold" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[This document contains confidential information. Disposed once exploited
+	 
+]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="163" splitType="Stretch">
+			<elementGroup>
+				<line>
+					<reportElement key="line-6" x="0" y="29" width="535" height="1" uuid="854ead30-0d02-486c-b222-9a62baa1a58a"/>
+				</line>
+			</elementGroup>
+			<staticText>
+				<reportElement key="staticText-4" x="7" y="33" width="92" height="20" uuid="ab1007d0-8b64-4c9b-ba9b-9c7ed2f29a56"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Dialog" pdfFontName="Courier" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[Officer Name]]></text>
+			</staticText>
+			<line>
+				<reportElement key="line-8" x="0" y="56" width="535" height="1" uuid="4459630f-6eb4-45e8-91da-7da8306c30c1"/>
+			</line>
+			<staticText>
+				<reportElement key="staticText-5" x="7" y="60" width="92" height="20" uuid="c7e09fe3-1888-4304-a7e9-f4c98ec552b8"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Dialog" pdfFontName="Courier" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[Card serial No ]]></text>
+			</staticText>
+			<line>
+				<reportElement key="line-9" x="0" y="83" width="535" height="1" uuid="020dec0a-d29e-4416-a270-e1b3df25705f"/>
+			</line>
+			<staticText>
+				<reportElement key="staticText-6" x="7" y="87" width="92" height="20" uuid="29807801-d333-4f3b-9bb6-4b1959dbf928"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Dialog" pdfFontName="Courier" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[Issue date]]></text>
+			</staticText>
+			<line>
+				<reportElement key="line-10" x="0" y="110" width="535" height="1" uuid="c17772e7-a2e2-428b-8eaf-3ee7f9886d50"/>
+			</line>
+			<staticText>
+				<reportElement key="staticText-7" x="7" y="113" width="92" height="20" uuid="2172083b-4fe9-478e-b13a-b84265f4b214"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Dialog" pdfFontName="Courier" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[User PIN ]]></text>
+			</staticText>
+			<line>
+				<reportElement key="line-11" x="0" y="136" width="535" height="1" uuid="e8dcd12a-b32e-4e1c-83cd-f7d2f67e8809"/>
+			</line>
+			<line>
+				<reportElement key="line-12" x="0" y="162" width="535" height="1" uuid="d1728f0b-fc6c-440f-b83d-89269ac63804"/>
+			</line>
+			<staticText>
+				<reportElement key="staticText-8" x="149" y="140" width="237" height="20" uuid="d6f4d12a-9e39-4ad8-a8e6-e48dca3a9343"/>
+				<textElement>
+					<font fontName="Dialog"/>
+				</textElement>
+				<text><![CDATA[@Epic Terminal Line Encryption (Epic-TLE)
+]]></text>
+			</staticText>
+			<line>
+				<reportElement key="line-13" x="101" y="29" width="1" height="108" uuid="4d10d7d3-6a26-42d2-bdbf-dc6d34df09e8"/>
+			</line>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement key="textField" x="107" y="33" width="423" height="20" uuid="387cef20-c911-4a27-a11f-80695abadc5f"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Dialog" pdfFontName="Courier" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{merchantname}]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement key="textField" x="107" y="60" width="423" height="20" uuid="db4eee1b-48ca-4aad-a4c1-4f3aa9366ba6"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Dialog" pdfFontName="Courier" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{cardSerialNo}]]></textFieldExpression>
+			</textField>
+			<textField pattern="yyyy/MM/dd" isBlankWhenNull="true">
+				<reportElement key="textField" x="107" y="87" width="423" height="20" uuid="2985a825-143d-4e0c-a47f-f955470bff0b"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Dialog" pdfFontName="Courier" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{issuedDate}]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement key="textField" x="107" y="113" width="423" height="20" uuid="615e2a85-1b88-4bc8-82e3-0e6c87f26e2d"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Dialog" pdfFontName="Courier" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{userPin}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement key="line-14" x="0" y="30" width="1" height="133" uuid="ba005245-6ed6-4aa1-a538-a369fdaac196"/>
+			</line>
+			<line>
+				<reportElement key="line-15" x="535" y="29" width="1" height="134" uuid="69c4299b-445b-4d26-aba3-88e1a6a7d6c2"/>
+			</line>
+		</band>
+	</summary>
+</jasperReport>

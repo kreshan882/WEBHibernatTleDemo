@@ -1,0 +1,39 @@
+@import "darknight_color_palette.scss";
+@import "reset.scss";
+@import "global.scss";
+
+// --------------------------------------------------
+// Application modules
+// --------------------------------------------------
+
+body {
+	margin:0;
+	padding:0;
+	background:$primary_master_light_silver9;
+
+	@import "darknight_header.scss";
+
+	section.app-content {
+		width:100%;
+		height:calc(100% - 83px);
+		position:fixed;
+		top:60px;
+		overflow:hidden;
+
+		@import "darknight_leftmenu.scss";
+
+		.content {
+			width:calc(100% - 250px);
+			height:100%;
+			float:left;
+			overflow-y:auto;
+			overflow-x:hidden;
+
+			@import "darknight_dashboard.scss";
+			@import "darknight_innerpage.scss";
+		}
+	}
+
+	@import "darknight_footer.scss";
+}
+//End

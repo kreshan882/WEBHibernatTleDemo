@@ -1,0 +1,309 @@
+@import "darknight_color_palette.scss";
+@import "reset.scss";
+@import "global.scss";
+
+// --------------------------------------------------
+// Login module
+// --------------------------------------------------
+
+body {
+	@include setbackground();
+
+	.brand {
+		width:100%;
+		height:100px;
+		margin-top:18%;
+		@include transition(0.3s);
+
+		&.eff-movetop {
+			width:350px;
+			height:110px;
+			margin:2%;
+
+			.logo{
+				background:url('../assets/images/logo_login_exsmall.png') transparent no-repeat top left;
+				width:250px;
+				height:75px;
+				margin:0px;
+			}
+
+			.slogon{
+				opacity:0;
+			}
+		}
+
+		.logo {
+			width:100%;
+			height:83px;
+			margin:0 auto;	
+			display:block;
+			background:url('../assets/images/logo_login_mid_small.png') transparent no-repeat top center;	
+			@include transition(0.3s);
+		}
+
+		.slogon {
+			width:100%;
+			text-align:center;
+			color:$primary_master_light_silver1;
+			font-size:1.3em;
+			display	:block;
+			font-family:arial;
+			font-weight:normal;
+			margin-top:6px;
+			@include transition(0.3s);
+		}
+	}
+
+	.login-box {
+		opacity:0;
+		@include transition(0.5s);
+		width:380px;
+		margin:8% auto;
+
+		h1{
+		    width: 145px;
+		    text-align: right;
+		    color: $primary_master_light_blue;
+		    font-size: 24pt;
+		    font-weight: bold;
+		    font-family: arial;
+		    line-height: 24pt;
+		    margin: auto;
+		    display: block;
+		    float: left;
+		    padding-right:10px;
+		    border-right:1px solid $primary_master_light_silver4;
+		}
+
+		.form-title{
+			width: 135px;
+		    margin: 2px 0px 0px 10px;
+		    float: left;
+		    color:$primary_master_light_silver5;
+		    font-family:arial;
+		    font-size:0.7em;
+		}
+
+		.msg-panel {
+			width:100%;
+			margin:10px 0px 4px 0px;
+			text-align:left;
+			font-family:arial;
+			font-size:0.8em;
+			float:left;
+
+			&.error-login-msg{
+				color:$error_msg_red;
+			}
+		}
+
+		.login-form {
+			width:100%;
+			float:left;
+			position:relative;
+
+			input[type='text']{
+				@include transition(0.5s);
+				float: left;
+			    width: 83%;
+			    border: 1px solid $primary_master_light_silver6;
+			    padding: 10px 10px;
+			    margin: 6px 0px;
+			    border-radius: 3px;
+			    outline:none;
+			    color:$black;
+
+			    &:focus{
+			    	@include shadow(inset,0,0,8px,0,$primary_master_light_silver4);
+  					background: $white;
+			    }
+			}
+
+			.btn-login{
+				@include transition(0.3s);
+				position: absolute;
+			    right: 5px;
+			    top: 14px;
+				border-style:none;
+				z-index:2;
+				width:71px;
+				height:71px;
+				background :$iconsprite transparent no-repeat top left;
+				background-position: -146px 1px;
+				cursor: pointer;
+				outline:none;
+
+				&:hover{
+					background-position: -146px -70px;
+				}
+			}
+		}
+
+		&.eff-fadeinscale{
+			opacity:1;
+		}
+	}
+
+	footer{
+		position:fixed;
+		bottom:0px;
+		width:100%;
+		margin:1%;
+		padding:0px;
+
+		.sys-time {
+			width:25%;
+			display:inline-block;
+			color:$primary_master_light_silver0;
+			font-family:HelveticaNeueRegular;
+			font-size:2.2em;
+		}
+
+		.footer{
+			width:50%;
+			display:inline-block;
+			text-align:center;
+			font-size:0.7em;
+			color:$primary_master_light_silver2;
+			font-family:arial;
+
+			a {
+				color:$primary_master_light_silver2;
+				font-family:arial;
+				text-decoration:underline;	
+
+				&:hover{
+					color:$white;
+					text-decoration:none;
+				}			
+			}
+		}
+
+		.quick-links {
+			width:20%;
+			display:inline-block;
+			position:relative;
+
+			a{
+				display:block;
+				float:right;
+				width:44px;
+				height:44px;
+				background 	:$iconsprite transparent no-repeat top left;
+				@include transition(0.3s);
+			}
+			& .lnk-sys{
+				background-position:0px 0px;
+				margin-right:15px;
+			}
+			& .lnk-sys:hover{
+				background-position:0px -44px;
+			}
+			& .lnk-about{
+				background-position:-45px 0px;
+			}
+			& .lnk-about:hover{
+				background-position:-45px -44px;
+			}
+
+			.system-infor-panel, .tle-infor-panel{
+				width:300px;
+				height:auto;
+				position:absolute;
+				border:1px solid $primary_master_light_silver0;
+				bottom:55px;
+				right:-20px;
+				background:$primary_master_light_silver4;
+				display:none;
+
+				h1{
+					margin:0px;
+					width:100%;
+					padding:4px 0px;
+					background:$primary_master_light_silver7;
+					color:$primary_master_light_silver8;
+					font-family:arial;
+					font-size:0.85em;
+					font-weight:normal;
+				}
+
+				a{
+					display:inline-block;
+					background:none;
+					width:auto;
+					height:auto;
+					text-decoration:none;
+					font-size:0.8em;
+					color:$primary_master_light_silver8;
+					font-family:arial;
+					font-weight:normal;
+					padding: 3px 5px;
+				    text-align: center;
+				    margin: -1px 3px 0px 0px;
+					background:$primary_master_light_silver4;
+
+					&:hover{
+						color:$white;
+						background:$primary_master_light_silver2;
+					}
+				}
+
+				ul {
+					margin:5px 10px;
+					padding:0;
+					display:block;
+					width:90%;
+
+					li {
+						padding:0;
+						margin:0 0 5px 0;
+						display:block;
+						width:100%;
+						list-style:none;
+						color:$primary_master_light_silver1;
+						font-family:arial;
+						font-size:0.8em;
+
+						label {
+							display:inline-block;
+							width:50%;
+						}
+
+						span {
+							display:inline-block;
+							width:50%;	
+						}
+					}
+				}
+
+				p{
+					display:block;
+					margin:5px 10px;
+					padding:0;
+					width:95%;
+					color:$primary_master_light_silver1;
+					font-family:arial;
+					font-size:0.8em;
+				}
+			}
+
+			.down-arrow {
+				position: absolute;
+    			width: 0; 
+				height: 0; 
+				border-left: 10px solid transparent;
+				border-right: 10px solid transparent;
+  				border-top: 10px solid $primary_master_light_silver4;
+  				display:none;
+  				bottom: 46px;
+
+  				&.sys-down-arrow{
+  					right: 70px;
+  				}
+  				&.tle-down-arrow{
+  					right: 12px;
+  				}
+			}				
+		}
+	}
+}

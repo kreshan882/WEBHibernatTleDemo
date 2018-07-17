@@ -1,0 +1,88 @@
+// --------------------------------------------------
+// Application left menu
+// --------------------------------------------------
+.left-nav{
+	width:250px;
+	height:100%;
+	background:url('../assets/images/sidenav_bg.png') $primary_master_light_silver13 no-repeat top left;
+	overflow:auto;	
+	background-size:cover;
+	float:left;
+	overflow-y:auto;
+	overflow-x:hidden;
+
+	.navigation {
+		display:block;
+		margin:10px 5px;
+		padding:0;
+		list-style:none;
+		font-family:arial;
+
+		li {
+			margin:3px 0px;
+			@include transition(0.3s);
+			padding:6px 0 6px 0;
+			border-bottom:1px solid $primary_master_light_blue2;
+
+
+			a {
+				@include transition(0.3s);
+				padding:5px 0px;
+				text-decoration:none;
+				color:$primary_master_light_blue1;
+				display:inline-block;
+				display:block;
+				font-size:0.85em;
+
+				&:hover{
+					background:$primary_master_light_blue;
+					color:$white;
+
+					i{
+						padding:0 2px 0 8px;
+					}
+				}
+
+				i{
+					@include transition(0.3s);
+					padding:0px 5px;
+				}
+			}
+
+			.sub-nav {
+				margin:0px;
+				list-style:none;
+				display:none;
+
+				li{
+					margin:0px 0px 0px 25px;
+					padding:0px;
+					list-style:none;
+					border-bottom:1px dotted $primary_master_light_blue;
+
+					&:last-child{
+						border-style:none;
+					}
+
+					.menuselect{
+						background:$primary_master_light_blue;
+						color:$white;
+					}
+
+					a {
+						display:block;
+						padding:5px 0px 5px 0px;
+						font-weight:100;
+						font-size:0.7em;
+
+						&:hover{
+							background:$primary_master_light_blue;
+							color:$white;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+//End

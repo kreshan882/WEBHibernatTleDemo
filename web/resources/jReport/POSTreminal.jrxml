@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="POSTreminal" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="30" rightMargin="30" topMargin="20" bottomMargin="20" uuid="1d9b8877-525d-4e61-b152-143daa96ca16">
+	<property name="ireport.scriptlethandling" value="0"/>
+	<property name="ireport.encoding" value="UTF-8"/>
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<import value="net.sf.jasperreports.engine.*"/>
+	<import value="java.util.*"/>
+	<import value="net.sf.jasperreports.engine.data.*"/>
+	<parameter name="bankname" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="merchantname" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="terminalid" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="issuedDate" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="mek" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="keyid" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="tmk" class="java.lang.String" isForPrompting="false"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="32" splitType="Stretch">
+			<line>
+				<reportElement key="line-1" x="0" y="3" width="535" height="1" uuid="a2307862-7fdb-4302-900c-814c903faf11"/>
+			</line>
+			<line>
+				<reportElement key="line-2" x="0" y="31" width="535" height="1" uuid="8a13f3d7-0940-4850-96c5-6962decadb9a"/>
+			</line>
+			<rectangle>
+				<reportElement key="rectangle-1" x="0" y="5" width="535" height="25" backcolor="#999999" uuid="6de4fb12-fd00-432b-becf-05275fa33cd4"/>
+			</rectangle>
+			<staticText>
+				<reportElement key="staticText-1" x="99" y="8" width="346" height="20" uuid="5d3694ae-6024-4b17-94c1-5f2b481bdcf6"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Dialog" size="12" isBold="true" pdfFontName="Courier-Bold" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[Mailing keys (TMK,MEK) for POS terminals 
+ 
+]]></text>
+			</staticText>
+			<line>
+				<reportElement key="line-3" x="0" y="3" width="535" height="1" uuid="16a3037e-69bc-4af6-9a34-11a5aa49b3a3"/>
+			</line>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="36" splitType="Stretch">
+			<line>
+				<reportElement key="line-4" x="0" y="3" width="535" height="1" uuid="4729ed51-a28b-4aa6-ab77-a2ddeae4395b"/>
+			</line>
+			<rectangle>
+				<reportElement key="rectangle-2" x="0" y="6" width="535" height="30" backcolor="#CCCCCC" uuid="c932ce93-bee4-47e1-96bb-108b018769b1"/>
+			</rectangle>
+			<staticText>
+				<reportElement key="staticText-2" x="7" y="9" width="513" height="22" uuid="8b2b3bb6-a7ef-426f-bed9-91d45686470c"/>
+				<textElement textAlignment="Left" verticalAlignment="Bottom">
+					<font fontName="Dialog" size="10" isBold="true" pdfFontName="Courier-Bold" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[This document contains confidential information. Disposed once exploited
+	 
+]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="302" splitType="Stretch">
+			<line>
+				<reportElement key="line-6" x="0" y="28" width="535" height="1" uuid="f848b517-e7eb-4168-afa5-a54b510d115d"/>
+			</line>
+			<line>
+				<reportElement key="line-7" x="0" y="55" width="535" height="1" uuid="cdfa249d-1835-49b6-914d-abcd1551f39c"/>
+			</line>
+			<line>
+				<reportElement key="line-8" x="0" y="83" width="535" height="1" uuid="bffc5cfb-401d-45f7-bc06-352dbffdc1fc"/>
+			</line>
+			<line>
+				<reportElement key="line-9" x="0" y="110" width="535" height="1" uuid="5cda1b93-25c1-4c56-9575-a78249063f8d"/>
+			</line>
+			<line>
+				<reportElement key="line-10" x="0" y="136" width="535" height="1" uuid="d6e1b966-597c-4f86-ba9e-c5a370d42ec5"/>
+			</line>
+			<line>
+				<reportElement key="line-11" x="0" y="162" width="535" height="1" uuid="f9f3c8eb-1b55-4155-a996-29f1a3a7ced6"/>
+			</line>
+			<staticText>
+				<reportElement key="staticText-4" x="7" y="139" width="92" height="20" uuid="4bf420cf-856a-4f97-a60c-c5cdfafbf4f3"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Dialog" pdfFontName="Courier" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[MEK]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-5" x="7" y="32" width="92" height="20" uuid="03c0c181-d87f-4d4d-bfc6-e50f2ed8f729"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Dialog" pdfFontName="Courier" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[Officer Name]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-6" x="7" y="60" width="92" height="20" uuid="165e6de4-352e-471a-83d4-2e025ce95e60"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Dialog" pdfFontName="Courier" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[Terminal ID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-7" x="7" y="87" width="92" height="20" uuid="f7e9aaf8-0848-4a20-b020-2acaeba92453"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Dialog" pdfFontName="Courier" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[Issue date]]></text>
+			</staticText>
+			<line>
+				<reportElement key="line-13" x="0" y="189" width="535" height="1" uuid="0b02ba40-fbc3-45a0-9de8-2acac5dcb3ce"/>
+			</line>
+			<staticText>
+				<reportElement key="staticText-8" x="7" y="166" width="92" height="20" uuid="4f555cfd-4afd-429e-9d40-ef8ebc805b87"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Dialog" pdfFontName="Courier" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[Key Id]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-9" x="7" y="113" width="92" height="20" uuid="d2cc1b3b-2dd5-490f-b0d9-1d50f21eda25"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Dialog" pdfFontName="Courier" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[TMK]]></text>
+			</staticText>
+			<line>
+				<reportElement key="line-14" x="0" y="216" width="535" height="1" uuid="0d914fd8-070d-444a-b4c3-6f4ec039ea5c"/>
+			</line>
+			<staticText>
+				<reportElement key="staticText-10" x="149" y="194" width="237" height="20" uuid="d633c0ff-ff67-4f55-8c96-4760626cb724"/>
+				<textElement>
+					<font fontName="Dialog"/>
+				</textElement>
+				<text><![CDATA[@Epic Terminal Line Encryption (Epic-TLE)
+]]></text>
+			</staticText>
+			<line>
+				<reportElement key="line-15" x="101" y="28" width="1" height="161" uuid="fcb61549-1d16-43e6-8405-7eba6b0c4f0b"/>
+			</line>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement key="textField-2" x="107" y="32" width="423" height="20" uuid="529bc605-c83a-4c6a-bb96-9e2aaebbe9c8"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Dialog" pdfFontName="Courier" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{merchantname}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement key="textField-3" x="107" y="60" width="423" height="20" uuid="df814a8f-ab81-4cfa-ac35-12b41015666b"/>
+				<textElement>
+					<font fontName="Dialog" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{terminalid}]]></textFieldExpression>
+			</textField>
+			<textField pattern="yyyy/MM/dd" isBlankWhenNull="true">
+				<reportElement key="textField-4" x="107" y="87" width="423" height="20" uuid="a39b288e-1be4-4dac-a1f1-b667390c261b"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Dialog" pdfFontName="Courier" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{issuedDate}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement key="textField-5" x="107" y="139" width="423" height="20" uuid="9d9da31e-24b2-4b32-a52b-5072f9f1c482"/>
+				<textElement>
+					<font fontName="Dialog" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{mek}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement key="textField-6" x="107" y="113" width="423" height="20" uuid="96ef2657-c410-4a3b-a374-3e7b04b8520c"/>
+				<textElement>
+					<font fontName="Dialog" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{tmk}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement key="textField-7" x="107" y="166" width="423" height="20" uuid="0541ea16-3aa8-4117-92a9-49cc8c75ef1e"/>
+				<textElement>
+					<font fontName="Dialog" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{keyid}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement key="line-16" x="535" y="28" width="1" height="189" uuid="1e4e44ad-e24d-448f-92e8-5d02ce551a62"/>
+			</line>
+			<line>
+				<reportElement key="line-17" x="0" y="28" width="1" height="189" uuid="414fdfe5-5555-470e-acdd-88636d77d11f"/>
+			</line>
+		</band>
+	</summary>
+</jasperReport>

@@ -1,0 +1,27 @@
+// --------------------------------------------------
+// Application footer
+// --------------------------------------------------
+
+footer {
+	width:100%;
+	position:fixed;
+	bottom:0;
+	text-align:center;
+	padding:7px 0px;
+	background:$primary_master_light_silver10;
+	font-family:arial;
+	font-size:0.7em;
+	color:$primary_master_light_silver11;
+
+	a {
+		color:$primary_master_light_silver11;
+		font-family:arial;
+		text-decoration:underline;	
+
+		&:hover{
+			color:$white;
+			text-decoration:none;
+		}			
+	}
+}
+//End

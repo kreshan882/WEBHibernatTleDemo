@@ -1,0 +1,69 @@
+// --------------------------------------------------
+// Application form controllers
+// --------------------------------------------------
+
+	.form-label{
+		font-family:arial;
+		font-size:0.8em;
+		color:$primary_master_light_silver8;
+		text-align:left;
+	}
+
+	.required {
+		font-family:arial;
+		font-size:1em;
+		color:$required_red;
+		font-weight:bold;		
+	}
+
+	.txt-input, .ddl-input {
+		padding:4px 10px;
+		display:block;
+		float:left;
+		outline:none;
+		border:1px solid $primary_master_light_silver2;
+		background:$primary_master_light_silver4;
+		color:$white;
+		font-family:arial;
+		font-size:0.8em;
+	}
+
+	.btn {
+		padding:4px 10px;
+		font-family:arial;
+		font-size:0.74em;
+		color:$white;
+		text-transform:uppercase;
+		outline:none;
+		margin:0px 4px 0px 0px;
+
+		&.default-button{
+			background:$primary_master_light_blue1;
+			border:1px solid $primary_master_light_blue3;
+
+			&:hover, &:focus{
+    			color:$white;
+    			background:$primary_master_light_silver10;
+    			border:1px solid $primary_master_light_blue1;
+    		}
+		}
+
+		&.reset-button{
+			background:$primary_master_light_silver1;
+			border:1px solid $primary_master_light_silver2;
+			
+			&:hover, &:focus{
+    			color:$white;
+    			background:$primary_master_light_silver10;
+    			border:1px solid $primary_master_light_silver2;
+    		}
+		}
+	}
+
+	.width-35{
+		width:35%;
+	}
+	.width-39{
+		width:39%;
+	}
+//End
